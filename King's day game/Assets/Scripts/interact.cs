@@ -2,40 +2,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class interact : MonoBehaviour
 {
     public cameraMovement cameraMovement;
     public Camera mainCamera;
+    public Transform talkWithNPC;
     public Transform seeWares;
     public Transform playerCam;
+    public GameObject speech;
 
-    bool browsing = false;
+    float cameraXRotation = 0f;
+
+    [SerializeField] bool talking = false;
+    [SerializeField] bool browsing = false;
     bool playerInTrigger = false;
 
     private void Update()
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            browsing = !browsing;
+            talking = !talking;
 
-            if (browsing)
+            if (talking && !browsing)
             {
-                cameraMovement.target = seeWares;
+                cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
+                speech.SetActive(true);
             }
-            else
+            else if(!talking || browsing)
             {
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
                 cameraMovement.target = playerCam;
                 Cursor.lockState = CursorLockMode.Locked;
+                speech.SetActive(false);
+                browsing = false;
+                talking = false;
             }
+        }
+
+        if(talking)
+        {
+            cameraXRotation = 0;
+            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, 0, 0);
         }
 
         if(browsing)
         {
-            cameraMovement.transform.localRotation = Quaternion.Euler(20, 0, 0);
+            cameraXRotation = 20;
+            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, 0, 0);
+            speech.SetActive(false);
         }
     }
 
@@ -53,5 +71,12 @@ public class interact : MonoBehaviour
         {
             playerInTrigger = false;
         }
+    }
+
+    public void SeeWares()
+    {
+        browsing = true;
+        talking = false;
+        cameraMovement.target = seeWares;
     }
 }
