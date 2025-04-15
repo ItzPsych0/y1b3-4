@@ -14,10 +14,13 @@ public class interact : MonoBehaviour
     public GameObject speech;
 
     float cameraXRotation = 0f;
+    public float cameraYRotation = 0f;
 
-    [SerializeField] bool talking = false;
-    [SerializeField] bool browsing = false;
+    bool talking = false;
+    bool browsing = false;
     bool playerInTrigger = false;
+
+    private Light lightPoint;
 
     private void Update()
     {
@@ -46,14 +49,32 @@ public class interact : MonoBehaviour
         if(talking)
         {
             cameraXRotation = 0;
-            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, 0, 0);
+            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
         }
 
         if(browsing)
         {
             cameraXRotation = 20;
-            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, 0, 0);
+            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
             speech.SetActive(false);
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            LayerMask layerMask = LayerMask.GetMask("Wares");
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+            {
+                lightPoint = hit.transform.gameObject.GetComponentInChildren<Light>(true);
+                lightPoint.enabled = true;
+            }
+            else
+            {
+                if (lightPoint != null)
+                {
+                    lightPoint.enabled = false;
+                }
+            }
+
         }
     }
 
@@ -79,4 +100,6 @@ public class interact : MonoBehaviour
         talking = false;
         cameraMovement.target = seeWares;
     }
+
+
 }
