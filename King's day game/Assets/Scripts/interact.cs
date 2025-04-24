@@ -32,17 +32,21 @@ public class interact : MonoBehaviour
             {
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
+                GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
+
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
             }
             else if(!talking || browsing)
             {
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+                GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
                 cameraMovement.target = playerCam;
                 Cursor.lockState = CursorLockMode.Locked;
                 speech.SetActive(false);
                 browsing = false;
                 talking = false;
+                lightPoint.enabled = false;
             }
         }
 
