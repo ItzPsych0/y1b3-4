@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class interact : MonoBehaviour
+public class MiniGame_Interact : MonoBehaviour
 {
     public cameraMovement cameraMovement;
     public Camera mainCamera;
