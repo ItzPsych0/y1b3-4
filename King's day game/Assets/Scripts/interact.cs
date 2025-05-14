@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class interact : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class interact : MonoBehaviour
     public Transform seeWares;
     public Transform playerCam;
     public GameObject speech;
+    public GameObject poor;
 
     float cameraXRotation = 0f;
     public float cameraYRotation = 0f;
@@ -58,27 +60,7 @@ public class interact : MonoBehaviour
 
         if(browsing)
         {
-            cameraXRotation = 20;
-            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
-            speech.SetActive(false);
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            LayerMask layerMask = LayerMask.GetMask("Wares");
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-            {
-                lightPoint = hit.transform.gameObject.GetComponentInChildren<Light>(true);
-                lightPoint.enabled = true;
-            }
-            else
-            {
-                if (lightPoint != null)
-                {
-                    lightPoint.enabled = false;
-                }
-            }
-
+            Browsing();
         }
     }
 
@@ -105,5 +87,47 @@ public class interact : MonoBehaviour
         cameraMovement.target = seeWares;
     }
 
+    void Browsing()
+    {
+        cameraXRotation = 20;
+        cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
+        speech.SetActive(false);
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        LayerMask layerMask = LayerMask.GetMask("Wares");
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            lightPoint = hit.transform.gameObject.GetComponentInChildren<Light>(true);
+            lightPoint.enabled = true;
+            float cost = lightPoint.GetComponentInParent<Value>().value;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (moneyManager.cashAmount >= cost)
+                {
+                    moneyManager.cashAmount -= cost;
+                    Destroy(lightPoint.transform.parent.gameObject);
+                }
+
+                else
+                {
+                    poor.SetActive(true);
+                    TextMeshProUGUI poorText = poor.GetComponentInChildren<TextMeshProUGUI>();
+                    poorText.text = $"Sorry, you need €{cost} to buy this.";
+                }
+            }
+        }
+        else
+        {
+            if (lightPoint != null)
+            {
+                lightPoint.enabled = false;
+                poor.SetActive(false);
+            }
+        }
+
+    }
 
 }
