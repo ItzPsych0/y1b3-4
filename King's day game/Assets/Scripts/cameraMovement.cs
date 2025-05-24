@@ -8,6 +8,7 @@ public class cameraMovement : MonoBehaviour
     public Vector2 look;
     public float smoothing = 0.1f;
     private Vector3 offset;
+    public bool interacting = false;
 
     void Start()
     {
@@ -17,6 +18,10 @@ public class cameraMovement : MonoBehaviour
 
     void Update()
     {
+        if(interacting)
+        {
+            return;
+        }
         LookUpdate();
         FollowTarget();
     }

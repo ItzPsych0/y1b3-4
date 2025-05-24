@@ -4,13 +4,11 @@ public class Koek : MonoBehaviour
 {
     [SerializeField] KoekhapManager koekhapManager;
     [SerializeField] OpponentKoekHappen opponentKoekHappen;
-    [SerializeField] giveTarget giveTarget;
 
     private void Start()
     {
         koekhapManager = FindFirstObjectByType<KoekhapManager>();
         opponentKoekHappen = FindFirstObjectByType<OpponentKoekHappen>();
-        giveTarget = FindFirstObjectByType<giveTarget>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +24,6 @@ public class Koek : MonoBehaviour
             KoekhapManager.opponentsScore += 1;
             koekhapManager.UpdateScore();
             opponentKoekHappen.SpawnAtRandomPoint();
-            giveTarget.koekSpotted = false;
             Destroy(gameObject);
         }
     }

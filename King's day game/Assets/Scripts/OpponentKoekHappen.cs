@@ -13,9 +13,8 @@ public class OpponentKoekHappen : MonoBehaviour
 
     public float moveSpeed = 3f;
 
-    void Start()
+    void OnEnable()
     {
-        SpawnAtRandomPoint();
         rb = GetComponent<Rigidbody>();
     }
 
