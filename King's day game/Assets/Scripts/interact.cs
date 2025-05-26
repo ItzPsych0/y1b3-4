@@ -46,21 +46,29 @@ public class interact : MonoBehaviour
                 cameraMovement.target = playerCam;
                 Cursor.lockState = CursorLockMode.Locked;
                 speech.SetActive(false);
+                poor.SetActive(false);
                 browsing = false;
                 talking = false;
-                lightPoint.enabled = false;
+                if (lightPoint != null)
+                {
+                    lightPoint.enabled = false;
+                }
+                cameraMovement.interacting = false;
             }
         }
 
         if(talking)
         {
             cameraXRotation = 0;
+            cameraMovement.transform.position = talkWithNPC.transform.position;
             cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
+            cameraMovement.interacting = true;
         }
 
-        if(browsing)
+        if (browsing)
         {
             Browsing();
+            cameraMovement.transform.position = seeWares.transform.position;
         }
     }
 
