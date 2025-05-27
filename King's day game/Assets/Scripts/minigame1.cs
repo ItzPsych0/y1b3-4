@@ -10,16 +10,6 @@ public class minigame1 : MonoBehaviour
     public float forceMultiplier = 10f;
     public float stopVelocityThreshold = 0.1f;
 
-    [Header("Scoring Settings")]
-    public int hole1Points = 2;
-    public int hole2Points = 3;
-    public int hole3Points = 4;
-    public int hole4Points = 1;
-
-    [Header("Respawn Settings")]
-    public Transform puckSpawnPoint;
-    public GameObject puckPrefab;
-    public bool respawnOnScore = true;
     public int Score = 0;
 
     private void Start()
@@ -48,41 +38,14 @@ public class minigame1 : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ScorePoints(int points)
     {
-        if (other.CompareTag("Hole1"))
-        {
-            ScorePoints(hole1Points);
-        }
-        else if (other.CompareTag("Hole2"))
-        {
-            ScorePoints(hole2Points);
-        }
-        else if (other.CompareTag("Hole3"))
-        {
-            ScorePoints(hole3Points);
-        }
-        else if (other.CompareTag("Hole4"))
-        {
-            ScorePoints(hole4Points);
-        }
-    }
-
-    private void ScorePoints(int points)
-    {
+        Score += points;
         
-        
-        Debug.Log("Scored " + Score+points + " points!");
+        Debug.Log("Scored a total of " + Score + " points!");
 
 
-        // Optionally add points to a global score manager here
 
-        if (respawnOnScore && puckPrefab != null && puckSpawnPoint != null)
-        {
-            Instantiate(puckPrefab, puckSpawnPoint.position, puckSpawnPoint.rotation);
-        }
-
-        Destroy(gameObject); // Remove current puck
     }
 
    

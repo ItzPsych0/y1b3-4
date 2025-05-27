@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class GameInteract : MonoBehaviour
     public Transform playGame;
     public GameObject puckPrefab;
     public Transform puckSpawnPoint;
-    public int maxPucks = 3;
+    public int maxPucks;
+    public spawnPuck spawnPuck;
     //public GameObject scoreUI;
     //public TMPro.TextMeshProUGUI scoreText;
 
@@ -21,9 +23,7 @@ public class GameInteract : MonoBehaviour
     bool talking = false;
     bool playing = false;
     bool playerInTrigger = false;
-    private int puckCount = 0;
-    private int totalScore = 0;
-    private GameObject currentPuck;
+    public int puckCount = 0;
     private bool isInMinigame = false;
     void Update()
     {
@@ -31,15 +31,15 @@ public class GameInteract : MonoBehaviour
         {
             talking = !talking;
 
-            if (talking && !playing)
+            if (talking)
             {
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
-              
+
             }
-            else if (!talking || playing)
+            else if (!talking && playing == false)
             {
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
                 cameraMovement.target = playerCam;
@@ -47,32 +47,37 @@ public class GameInteract : MonoBehaviour
                 speech.SetActive(false);
                 playing = false;
                 talking = false;
-                
             }
+            
         }
         if (talking)
         {
             cameraXRotation = 0;
             cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
         }
-        if (isInMinigame) 
+        if (isInMinigame)
         {
             cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0f);
         }
 
-        if (isInMinigame && currentPuck == null)
+        if (isInMinigame)
         {
-            if (puckCount < maxPucks)
+            if (!spawnPuck.puckInTrigger && puckCount < maxPucks)
             {
-                SpawnPuck();    
+                spawnPuck.SpawnPuck();
+                puckCount++;
             }
-            else if (puckCount == maxPucks)
+            else if (puckCount >= maxPucks && !spawnPuck.puckInTrigger)
             {
-                EndMinigame(); 
+                EndMinigame();
             }
-            
         }
+
+
     }
+ 
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -93,51 +98,31 @@ public class GameInteract : MonoBehaviour
     public void PlayGame()
     {
         playing = true;
-        talking = false;
         speech.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
 
+        Cursor.lockState = CursorLockMode.None;
+        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
+        Debug.Log("Switching camera to: " + playGame.name);
         cameraMovement.target = playGame;
 
         puckCount = 0;
-        totalScore = 0;
         isInMinigame = true;
         //scoreUI.SetActive(true);
         //scoreText.text = "Score: 0";
-
-        SpawnPuck();
-    
     }
 
-    void SpawnPuck()
-    {
-        currentPuck = Instantiate(puckPrefab, puckSpawnPoint.position, puckSpawnPoint.rotation);
-        currentPuck.GetComponent<Puck>().Setup(this);
-    }
-
-    public void AddScore(int amount) 
-    {
-        totalScore += amount;
-        //scoreText.text = "Score: " + totalScore;
-    }
-
-    public void NotifyPuckGone() 
-    {
-        puckCount++;    
-        currentPuck = null;
-        Debug.Log($"Puck gone. Count: {puckCount}/{maxPucks}");
-    }
-
-    void EndMinigame()
+public  void EndMinigame()
     {
         isInMinigame = false;
         //scoreUI.SetActive(false);
+        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
         cameraMovement.target = playerCam;
         Cursor.lockState = CursorLockMode.Locked;
-        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+        Debug.Log("Switching camera to: " + playerCam.name);
         playing = false;
-        cameraMovement.enabled = true;
-        Debug.Log("Game ended. Final Score: " + totalScore);
+       
     }
+
+
 
 }

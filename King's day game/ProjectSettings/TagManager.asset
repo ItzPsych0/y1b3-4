@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Wares
   - Puck
+  - Hole2
+  - Hole1
+  - Hole3
+  - Hole4
   layers:
   - Default
   - TransparentFX

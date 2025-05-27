@@ -7,15 +7,10 @@ public class Puck : MonoBehaviour
     private bool launched = false;
     private Vector3 dragStart;
     private bool hasNotified = false;
-    private GameInteract gameManager;
+    private minigame1    minigame1;
     public float forceMultiplier = 10f;
     private float stopTimer = 0f;
     private float stopDelay = 1f;
-
-    public void Setup(GameInteract gm)
-    {
-        gameManager = gm;
-    }
 
     void Start()
     {
@@ -33,8 +28,6 @@ public class Puck : MonoBehaviour
                 if (stopTimer >= stopDelay)
                 {
                     hasNotified = true;
-                    gameManager.NotifyPuckGone();
-                    Destroy(gameObject, 1f);
                 }
             }
             else
@@ -63,18 +56,5 @@ public class Puck : MonoBehaviour
             launched = true;
         }
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        switch (other.tag)
-        {
-            case "Hole1": gameManager.AddScore(1); break;
-            case "Hole2": gameManager.AddScore(2); break;
-            case "Hole3": gameManager.AddScore(3); break;
-            case "Hole4": gameManager.AddScore(4); break;
-        }
-
-    }
-
    
 }
