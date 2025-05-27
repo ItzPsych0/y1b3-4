@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class TaskManager : MonoBehaviour
 {
+    public cameraMovement cameraMovement;
     public GameObject journal;
     bool journalOpen = false;
     public TextMeshProUGUI bookHint;
@@ -17,8 +19,19 @@ public class TaskManager : MonoBehaviour
     /*public static bool quest3Complete = false;*/
     public static bool quest4Complete = false;
 
+    public GameObject endOfGame;
+
     bool cubeAcquired;
-    void Update()
+
+    private void Start()
+    {
+        endOfGame.SetActive(false);
+        quest1Complete = false;
+        quest2Complete = false;
+        /*quest3Complete = false;*/
+        quest4Complete = false;
+}
+void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
@@ -35,9 +48,27 @@ public class TaskManager : MonoBehaviour
             }
         }
 
-        if(quest1Complete &&  quest2Complete /*&& quest3Complete*/ && quest4Complete)
+        if(Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene(0);
         }
+
+        if(quest1Complete &&  quest2Complete /*&& quest3Complete*/ && quest4Complete)
+        {
+            endOfGame.SetActive(true);
+            Time.timeScale = 0f;
+            GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");                   
+            foreach (GameObject obj in talking)
+            {
+                obj.SetActive(false);
+            }
+            Cursor.lockState = CursorLockMode.None;
+            cameraMovement.interacting = true;
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

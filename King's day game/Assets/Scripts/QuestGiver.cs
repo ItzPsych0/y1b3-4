@@ -19,7 +19,7 @@ public class QuestGiver : MonoBehaviour
 
     bool talking = false;
     bool playerInTrigger = false;
-
+    bool questTriggered = false;
     public TextMeshProUGUI task4;
     public TextMeshProUGUI task4Hint;
     Tasks tasks;
@@ -88,12 +88,19 @@ public class QuestGiver : MonoBehaviour
         tasks.TaskUpdated();
         questButton.SetActive(false);
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, can you do me a favour? I really wanted that white cube over there, but I forgot my wallet. Could you please buy it for me?";
+        questTriggered = true;
     }
 
     public void QuestUpdate()
     {
         giveCube.SetActive(true);
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey there, did you manage to find the cube?";
+        if(!questTriggered)
+        {
+            quest.SetActive(true);
+            questButton.SetActive(false);
+            speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, that cube... may I please have it? I really wanted it but forgot my wallet at home.";
+        }
     }
 
     public void CubeGiven()
