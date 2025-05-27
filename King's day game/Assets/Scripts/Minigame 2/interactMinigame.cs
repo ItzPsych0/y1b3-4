@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class interactMinigame : MonoBehaviour
@@ -13,6 +14,11 @@ public class interactMinigame : MonoBehaviour
     public GameObject speech;
     public GameObject minigame;
     bool playingGame;
+
+    public TextMeshProUGUI task2;
+    public TextMeshProUGUI task2Hint;
+    public GameObject done;
+    public Tasks tasks;
 
     bool talking = false;
     bool playerInTrigger = false;
@@ -92,6 +98,30 @@ public class interactMinigame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         talking = false;
         cameraMovement.interacting = false;
+    }
+
+    public void VictoryReturn()
+    {
+        playingGame = false;
+        mainCamera.enabled = true;
+        minigame.SetActive(false);
+        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+        GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+        cameraMovement.target = playerCam;
+        Cursor.lockState = CursorLockMode.Locked;
+        talking = false;
+        cameraMovement.interacting = false;
+        UpdateQuest();
+
+    }
+
+    void UpdateQuest()
+    {
+        task2.text = $"<s>Win a game of koekhappen</s>";
+        task2Hint.text = $"<s>Current objective: find someone to play koekhappen</s>";
+        TaskManager.quest2Complete = true;
+        tasks.TaskUpdated();
+        done.SetActive(true);
     }
 
 }

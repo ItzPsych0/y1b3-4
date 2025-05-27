@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Opponent
   - Koek
+  - Speech
   layers:
   - Default
   - TransparentFX
