@@ -26,10 +26,17 @@ public class KoekhapManager : MonoBehaviour
     public Transform playerSpawnpoint;
     public Transform opponentSpawnpoint;
 
+    public TextMeshProUGUI task2;
+    public TextMeshProUGUI task2Hint;
+    public GameObject done;
+    Tasks tasks;
+    bool hasTriggered = false;
+
     void OnEnable()
     {
         controls.SetActive(true);
         Time.timeScale = 0f;
+        tasks = FindFirstObjectByType<Tasks>();
     }
 
     private void OnDisable()
@@ -50,11 +57,14 @@ public class KoekhapManager : MonoBehaviour
     }
     private void Update()
     {
-        if (yourScore >= 10)
+        if (yourScore >= 10 && !hasTriggered)
         {
+            hasTriggered = true;
             Time.timeScale = 0f;
             victory.SetActive(true);
             minigameUI.SetActive(false);
+            moneyManager.cashAmount += 5;
+            UpdateQuest();
         }
         if (opponentsScore >= 10)
         {
@@ -109,4 +119,14 @@ public class KoekhapManager : MonoBehaviour
             Destroy(go);
         }
     }
+
+    void UpdateQuest()
+    {
+        task2.text = $"<s>Win a game of koekhappen</s>";
+        task2Hint.text = $"<s>Current objective: find someone to play koekhappen</s>";
+        TaskManager.quest2Complete = true;
+        tasks.TaskUpdated();
+        done.SetActive(true);
+    }
+
 }
