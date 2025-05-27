@@ -9,6 +9,7 @@ public class moneyManager : MonoBehaviour
     void Start()
     {
         cashText = GetComponent<Text>();
+        cashAmount = 2;
     }
 
     // Update is called once per frame
