@@ -12,8 +12,10 @@ public class interact : MonoBehaviour
     public Transform talkWithNPC;
     public Transform seeWares;
     public Transform playerCam;
+    public GameObject howToInteract;
     public GameObject speech;
     public GameObject poor;
+
 
     float cameraXRotation = 0f;
     public float cameraYRotation = 0f;
@@ -35,11 +37,11 @@ public class interact : MonoBehaviour
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
-
+                howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
             }
-            else if(!talking || browsing)
+            else if(!talking || browsing || Input.GetKeyDown(KeyCode.Escape))
             {
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -77,6 +79,7 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
+            howToInteract.SetActive(true);
         }
     }
 
@@ -85,6 +88,7 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
+            howToInteract.SetActive(false);
         }
     }
 
