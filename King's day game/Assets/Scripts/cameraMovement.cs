@@ -35,7 +35,7 @@ void Update()
 
         look.x += mouseX;
         look.y -= mouseY;
-
+        
         look.y = Mathf.Clamp(look.y, -25f, 20f);
 
         transform.localRotation = Quaternion.Euler(look.y, look.x, 0);

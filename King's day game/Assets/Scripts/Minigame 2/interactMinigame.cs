@@ -54,6 +54,17 @@ public class interactMinigame : MonoBehaviour
             }
         }
 
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+            cameraMovement.interacting = false;
+            cameraMovement.target = playerCam;
+            Cursor.lockState = CursorLockMode.Locked;
+            speech.SetActive(false);
+            talking = false;
+        }
+
         if (talking)
         {
             cameraXRotation = 0;

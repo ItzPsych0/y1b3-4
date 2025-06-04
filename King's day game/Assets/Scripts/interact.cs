@@ -12,8 +12,10 @@ public class interact : MonoBehaviour
     public Transform talkWithNPC;
     public Transform seeWares;
     public Transform playerCam;
+    public GameObject howToInteract;
     public GameObject speech;
     public GameObject poor;
+
 
     float cameraXRotation = 0f;
     public float cameraYRotation = 0f;
@@ -35,7 +37,7 @@ public class interact : MonoBehaviour
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
-
+                howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
             }
@@ -57,7 +59,24 @@ public class interact : MonoBehaviour
             }
         }
 
-        if(talking)
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+            cameraMovement.target = playerCam;
+            Cursor.lockState = CursorLockMode.Locked;
+            speech.SetActive(false);
+            poor.SetActive(false);
+            browsing = false;
+            talking = false;
+            if (lightPoint != null)
+            {
+                lightPoint.enabled = false;
+            }
+            cameraMovement.interacting = false;
+        }
+
+        if (talking)
         {
             cameraXRotation = 0;
             cameraMovement.transform.position = talkWithNPC.transform.position;
@@ -77,6 +96,7 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
+            howToInteract.SetActive(true);
         }
     }
 
@@ -85,6 +105,7 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
+            howToInteract.SetActive(false);
         }
     }
 

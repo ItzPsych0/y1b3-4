@@ -95,6 +95,7 @@ public class KoekhapManager : MonoBehaviour
         minigameUI.SetActive(true);
         SpawnAtRandomPoint();
         opponentKoekHappen.SpawnAtRandomPoint();
+        hasTriggered = false;
     }
 
     public void RestartGame()
