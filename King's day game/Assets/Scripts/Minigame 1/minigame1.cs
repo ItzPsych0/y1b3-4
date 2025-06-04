@@ -3,7 +3,6 @@ using UnityEngine;
 public class minigame1 : MonoBehaviour
 {
 
-
     public int Score = 0;
 
     private void Start()

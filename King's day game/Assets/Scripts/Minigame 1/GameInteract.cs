@@ -25,7 +25,8 @@ public class GameInteract : MonoBehaviour
     private bool isInMinigame = false;
     void Update()
     {
-        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
+
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && isInMinigame == false)
         {
             talking = !talking;
 
@@ -48,47 +49,40 @@ public class GameInteract : MonoBehaviour
                 speech.SetActive(false);
                 talking = false;
             }
-            //else if (!talking && playing == false)
-            //{
-            //    GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
-            //    cameraMovement.target = playerCam;
-            //    Cursor.lockState = CursorLockMode.Locked;
-            //    speech.SetActive(false);
-            //    playing = false;
-            //    talking = false;
-            //}
+
+
 
         }
         if (talking)
-        {
-            cameraXRotation = 0;
-            cameraMovement.transform.position = talkWithNPC.transform.position;
-            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
-            cameraMovement.interacting = true;
-        }
-        if (isInMinigame)
-        {
-            cameraXRotation = 0;
-            cameraMovement.transform.position = playGame.transform.position;
-            cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
-            cameraMovement.interacting = true;
-        }
-
-        if (isInMinigame)
-        {
-            if (!spawnPuck.puckInTrigger && puckCount < maxPucks)
             {
-                spawnPuck.SpawnPuck();
-                puckCount++;
+                cameraXRotation = 0;
+                cameraMovement.transform.position = talkWithNPC.transform.position;
+                cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
+                cameraMovement.interacting = true;
             }
-            else if (puckCount >= maxPucks && !spawnPuck.puckInTrigger)
+            if (isInMinigame)
             {
-                EndMinigame();
+                cameraXRotation = 0;
+                cameraMovement.transform.position = playGame.transform.position;
+                cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
+                cameraMovement.interacting = true;
             }
-        }
+
+            if (isInMinigame)
+            {
+                if (!spawnPuck.puckInTrigger && puckCount < maxPucks)
+                {
+                    spawnPuck.SpawnPuck();
+                    puckCount++;
+                }
+                else if (puckCount >= maxPucks && !spawnPuck.puckInTrigger)
+                {
+                    EndMinigame();
+                }
+            }
 
 
-    }
+     }
  
 
     
@@ -111,6 +105,7 @@ public class GameInteract : MonoBehaviour
 
     public void PlayGame()
     {
+        talking = false;
         playing = true;
         speech.SetActive(false);
 
@@ -142,6 +137,7 @@ public  void EndMinigame()
         Cursor.lockState = CursorLockMode.Locked;
         Debug.Log("Switching camera to: " + playerCam.name);
         playing = false;
+        isInMinigame = false;
 
     }
 
