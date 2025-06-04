@@ -57,6 +57,17 @@ public class QuestGiver : MonoBehaviour
             }
         }
 
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+            cameraMovement.target = playerCam;
+            Cursor.lockState = CursorLockMode.Locked;
+            speech.SetActive(false);
+            talking = false;
+            cameraMovement.interacting = false;
+        }
+
         if (talking)
         {
             cameraXRotation = 0;

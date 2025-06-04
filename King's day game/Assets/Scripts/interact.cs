@@ -41,7 +41,7 @@ public class interact : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
             }
-            else if(!talking || browsing || Input.GetKeyDown(KeyCode.Escape))
+            else if(!talking || browsing)
             {
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -59,7 +59,24 @@ public class interact : MonoBehaviour
             }
         }
 
-        if(talking)
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+            cameraMovement.target = playerCam;
+            Cursor.lockState = CursorLockMode.Locked;
+            speech.SetActive(false);
+            poor.SetActive(false);
+            browsing = false;
+            talking = false;
+            if (lightPoint != null)
+            {
+                lightPoint.enabled = false;
+            }
+            cameraMovement.interacting = false;
+        }
+
+        if (talking)
         {
             cameraXRotation = 0;
             cameraMovement.transform.position = talkWithNPC.transform.position;
