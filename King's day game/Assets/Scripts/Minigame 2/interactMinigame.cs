@@ -11,6 +11,7 @@ public class interactMinigame : MonoBehaviour
     public Transform talkWithNPC;
     public Transform playerCam;
 
+    public GameObject howToInteract;
     public GameObject speech;
     public GameObject minigame;
     bool playingGame;
@@ -41,6 +42,7 @@ public class interactMinigame : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
+                howToInteract.SetActive(false);
             }
             else if (!talking)
             {
@@ -80,6 +82,7 @@ public class interactMinigame : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
+            howToInteract.SetActive(true);
         }
     }
 
@@ -88,6 +91,7 @@ public class interactMinigame : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
+            howToInteract.SetActive(false);
         }
     }
 
