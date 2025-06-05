@@ -171,7 +171,10 @@ public class GameInteract : MonoBehaviour
             Destroy(puck);
         }
 
-
+        if (Score >= 15) 
+        {
+            moneyManager.cashAmount += 5;
+        }
 
     }
 

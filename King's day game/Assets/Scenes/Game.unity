@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 4
-  GameInteract: {fileID: 0}
+  GameInteract: {fileID: 1904799274}
 --- !u!65 &263046203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 3
-  GameInteract: {fileID: 0}
+  GameInteract: {fileID: 1904799274}
 --- !u!65 &364862092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2872,7 +2872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 1
-  GameInteract: {fileID: 0}
+  GameInteract: {fileID: 1904799274}
 --- !u!65 &374385574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5422,7 +5422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 2
-  GameInteract: {fileID: 0}
+  GameInteract: {fileID: 1904799274}
 --- !u!65 &682113454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5763,7 +5763,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '                                                   Sjoelen'
+  m_text: "                                                   Sjoelen                                                                                       
+    \n                                                                        reward"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6312,7 +6313,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hey, you wanna play a round of             (shullen/shuffleboard) ?
+  m_text: Hey, you wanna play a round of             (shullen/shuffleboard)? Score
+    15 points for a            !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7704,7 +7706,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 566, y: 497}
+  m_AnchoredPosition: {x: 519, y: 497}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891788232
@@ -17234,7 +17236,6 @@ GameObject:
   - component: {fileID: 1904799276}
   - component: {fileID: 1904799275}
   - component: {fileID: 1904799274}
-  - component: {fileID: 1904799273}
   m_Layer: 0
   m_Name: Minigame 1
   m_TagString: Untagged
@@ -17242,19 +17243,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1904799273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904799272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff4ade2fead0f641b43313a86f613cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Score: 0
 --- !u!114 &1904799274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17277,8 +17265,8 @@ MonoBehaviour:
   playGame: {fileID: 1250976095}
   maxPucks: 6
   spawnPuck: {fileID: 783783022}
-  scoreText: {fileID: 0}
-  pucksText: {fileID: 0}
+  scoreText: {fileID: 1179487736}
+  pucksText: {fileID: 891788232}
   puckCount: 0
 --- !u!65 &1904799275
 BoxCollider:
