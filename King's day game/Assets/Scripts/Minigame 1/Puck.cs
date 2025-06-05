@@ -7,8 +7,7 @@ public class Puck : MonoBehaviour
     private bool launched = false;
     private Vector3 dragStart;
     private bool hasNotified = false;
-    private minigame1    minigame1;
-    public float forceMultiplier = 10f;
+    public float forceMultiplier = 5f;
     private float stopTimer = 0f;
     private float stopDelay = 1f;
 
@@ -16,9 +15,18 @@ public class Puck : MonoBehaviour
 
     [Header("Launch Settings")]
     public float stopVelocityThreshold = 0.1f;
+
+    public LineRenderer lineRenderer;
+    public int linePoints = 30;          // How many points to calculate
+    public float timeBetweenPoints = 0.1f; // Time step between each point
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (lineRenderer == null)
+        {
+            lineRenderer = GetComponent<LineRenderer>();
+        }
     }
     
     void Update()
@@ -63,25 +71,23 @@ public class Puck : MonoBehaviour
         }
     }
 
+    void ShowTrajectory(Vector3 startPosition, Vector3 initialVelocity)
+    {
+        lineRenderer.positionCount = linePoints;
+        Vector3[] points = new Vector3[linePoints];
 
-    //void OnMouseDown()
-    //{
-    //    if (!launched)
-    //    {
-    //        dragStart = Input.mousePosition;
-    //    }
-    //}
+        for (int i = 0; i < linePoints; i++)
+        {
+            float t = i * timeBetweenPoints;
+            Vector3 point = startPosition + initialVelocity * t + 0.5f * Physics.gravity * t * t;
+            points[i] = point;
+        }
 
-    //void OnMouseUp()
-    //{
-    //    if (!launched)
-    //    {
-    //        Vector3 dragEnd = Input.mousePosition;
-    //        Vector3 force = dragStart - dragEnd;
-    //        Vector3 launchDir = new Vector3(force.x, 0, force.y);
-    //        rb.AddForce(launchDir * forceMultiplier);
-    //        launched = true;
-    //    }
-    //}
+        lineRenderer.SetPositions(points);
+        lineRenderer.enabled = true;
+    }
+
+
+
 
 }

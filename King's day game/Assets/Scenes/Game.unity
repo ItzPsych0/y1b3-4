@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 4
-  minigame1: {fileID: 1904799273}
+  GameInteract: {fileID: 0}
 --- !u!65 &263046203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 3
-  minigame1: {fileID: 1904799273}
+  GameInteract: {fileID: 0}
 --- !u!65 &364862092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2872,7 +2872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 1
-  minigame1: {fileID: 1904799273}
+  GameInteract: {fileID: 0}
 --- !u!65 &374385574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5422,7 +5422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePoints: 2
-  minigame1: {fileID: 1904799273}
+  GameInteract: {fileID: 0}
 --- !u!65 &682113454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7704,7 +7704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 497}
+  m_AnchoredPosition: {x: 566, y: 497}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891788232
@@ -11120,7 +11120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 497}
+  m_AnchoredPosition: {x: 561, y: 426}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179487736
@@ -17270,11 +17270,15 @@ MonoBehaviour:
   cameraMovement: {fileID: 330585548}
   mainCamera: {fileID: 330585545}
   talkWithNPC: {fileID: 955296591}
+  Score: 0
   playerCam: {fileID: 778002272}
   speech: {fileID: 2095005578}
+  gameUI: {fileID: 1736017754}
   playGame: {fileID: 1250976095}
   maxPucks: 6
   spawnPuck: {fileID: 783783022}
+  scoreText: {fileID: 0}
+  pucksText: {fileID: 0}
   puckCount: 0
 --- !u!65 &1904799275
 BoxCollider:

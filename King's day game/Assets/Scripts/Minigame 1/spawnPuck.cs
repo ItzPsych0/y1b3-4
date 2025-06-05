@@ -22,4 +22,8 @@ public class spawnPuck : MonoBehaviour
             puckInTrigger = false;
         }
     }
+    public Rigidbody GetCurrentPuckRigidbody()
+    {
+        return currentPuck?.GetComponent<Rigidbody>();
+    }
 }

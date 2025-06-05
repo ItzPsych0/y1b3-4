@@ -1,22 +1,27 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameInteract : MonoBehaviour
 {
     public cameraMovement cameraMovement;
     public Camera mainCamera;
     public Transform talkWithNPC;
+    public int Score = 0;
     public Transform playerCam;
     public GameObject speech;
+    public GameObject gameUI;
     public Transform playGame;
     public int maxPucks;
     public spawnPuck spawnPuck;
-    //public GameObject scoreUI;
-    //public TMPro.TextMeshProUGUI scoreText;
 
     float cameraXRotation = 0f;
     float cameraYRotation = 0f;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI pucksText;
 
     bool talking = false;
     bool playing = false;
@@ -74,11 +79,16 @@ public class GameInteract : MonoBehaviour
                 {
                     spawnPuck.SpawnPuck();
                     puckCount++;
-                }
+                    UpdatePucksUI();
+            }
                 else if (puckCount >= maxPucks && !spawnPuck.puckInTrigger)
+                {
+                Rigidbody lastPuckRb = spawnPuck.GetCurrentPuckRigidbody();
+                if (lastPuckRb != null && lastPuckRb.linearVelocity.magnitude < 0.1f)
                 {
                     EndMinigame();
                 }
+            }
             }
 
 
@@ -105,9 +115,13 @@ public class GameInteract : MonoBehaviour
 
     public void PlayGame()
     {
+        Score = 0;
         talking = false;
         playing = true;
         speech.SetActive(false);
+        gameUI.SetActive(true);
+        UpdateScoreUI();
+        UpdatePucksUI();
 
         Cursor.lockState = CursorLockMode.None;
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
@@ -116,19 +130,30 @@ public class GameInteract : MonoBehaviour
 
         puckCount = 0;
         isInMinigame = true;
-        //scoreUI.SetActive(true);
-        //scoreText.text = "Score: 0";
+   
     }
 
-public  void EndMinigame()
+
+    public void ScorePoints(int points)
     {
-        //isInMinigame = false;
-        ////scoreUI.SetActive(false);
-        //GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
-        //cameraMovement.target = playerCam;
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Debug.Log("Switching camera to: " + playerCam.name);
-        //playing = false;
+        Score += points;
+        UpdateScoreUI();
+
+        Debug.Log("Scored a total of " + Score + " points!");
+    }
+
+    public void UpdateScoreUI()
+    {
+        scoreText.text = "Score: " + Score;
+    }
+
+    public void UpdatePucksUI()
+    {
+        pucksText.text = "Pucks: " + (maxPucks+1 - puckCount);
+    }
+
+    public  void EndMinigame()
+    {
 
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
         GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -138,6 +163,15 @@ public  void EndMinigame()
         Debug.Log("Switching camera to: " + playerCam.name);
         playing = false;
         isInMinigame = false;
+        gameUI.SetActive(false);
+
+        GameObject[] remainingPucks = GameObject.FindGameObjectsWithTag("Puck");
+        foreach (GameObject puck in remainingPucks)
+        {
+            Destroy(puck);
+        }
+
+
 
     }
 
