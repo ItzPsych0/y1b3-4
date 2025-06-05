@@ -8,6 +8,8 @@ public class QuestGiver : MonoBehaviour
     public Camera mainCamera;
     public Transform talkWithNPC;
     public Transform playerCam;
+
+    public GameObject howToInteract;
     public GameObject speech;
     public GameObject quest;
 
@@ -41,7 +43,7 @@ public class QuestGiver : MonoBehaviour
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
-
+                howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
             }
@@ -82,6 +84,7 @@ public class QuestGiver : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
+            howToInteract.SetActive(true);
         }
     }
 
@@ -90,6 +93,7 @@ public class QuestGiver : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
+            howToInteract.SetActive(false);
         }
     }
 
