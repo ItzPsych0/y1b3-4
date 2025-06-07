@@ -10,6 +10,7 @@ public class interactMinigame : MonoBehaviour
 
     public Transform talkWithNPC;
     public Transform playerCam;
+    public TaskManager taskManager;
 
     public GameObject howToInteract;
     public GameObject speech;
@@ -101,6 +102,7 @@ public class interactMinigame : MonoBehaviour
         speech.SetActive(false);
         minigame.SetActive(true);
         playingGame = true;
+        taskManager.inMinigame = true;
     }
     public void Return()
     {
@@ -113,6 +115,7 @@ public class interactMinigame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         talking = false;
         cameraMovement.interacting = false;
+        taskManager.inMinigame = false;
     }
 
     public void VictoryReturn()
@@ -126,8 +129,8 @@ public class interactMinigame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         talking = false;
         cameraMovement.interacting = false;
+        taskManager.inMinigame = false;
         UpdateQuest();
-
     }
 
     void UpdateQuest()

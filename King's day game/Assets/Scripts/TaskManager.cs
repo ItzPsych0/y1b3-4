@@ -3,12 +3,15 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour
 {
     public cameraMovement cameraMovement;
     public GameObject journal;
     bool journalOpen = false;
+    private List<GameObject> previouslyActiveSpeechObjects = new List<GameObject>();
+
     public TextMeshProUGUI bookHint;
     public TextMeshProUGUI sjoelHint;
     public TextMeshProUGUI koekhapHint;
@@ -22,6 +25,7 @@ public class TaskManager : MonoBehaviour
     public GameObject endOfGame;
 
     bool cubeAcquired;
+    public bool inMinigame = false;
 
     private void Start()
     {
@@ -33,22 +37,50 @@ public class TaskManager : MonoBehaviour
 }
 void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
+        
+            if (inMinigame == true)
+            {
+                return;
+            }
+
             journalOpen = !journalOpen;
 
-            if(journalOpen)
+            if (journalOpen)
             {
                 journal.SetActive(true);
+                Time.timeScale = 0f;
 
+                GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");
+                previouslyActiveSpeechObjects.Clear();
+
+                foreach (GameObject obj in talking)
+                {
+                    if (obj.activeInHierarchy)
+                    {
+                        previouslyActiveSpeechObjects.Add(obj);
+                        obj.SetActive(false);
+                    }
+                }
             }
             else
             {
                 journal.SetActive(false);
+                Time.timeScale = 1f;
+
+                foreach (GameObject obj in previouslyActiveSpeechObjects)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+                previouslyActiveSpeechObjects.Clear();
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene(0);
         }
