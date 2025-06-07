@@ -5,20 +5,21 @@ public class Puck : MonoBehaviour
 {
     private Rigidbody rb;
     private bool launched = false;
+    private bool isDragging = false;
     private Vector3 dragStart;
     private bool hasNotified = false;
     public float forceMultiplier = 5f;
+    public float lineLength = 0.5f;
+
     private float stopTimer = 0f;
     private float stopDelay = 1f;
 
-    private bool isDragging = false;
+  
 
     [Header("Launch Settings")]
     public float stopVelocityThreshold = 0.1f;
 
     public LineRenderer lineRenderer;
-    public int linePoints = 30;          // How many points to calculate
-    public float timeBetweenPoints = 0.1f; // Time step between each point
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,6 +28,7 @@ public class Puck : MonoBehaviour
         {
             lineRenderer = GetComponent<LineRenderer>();
         }
+        lineRenderer.enabled = false;
     }
     
     void Update()
@@ -56,6 +58,24 @@ public class Puck : MonoBehaviour
         {
             dragStart = Input.mousePosition;
             isDragging = true;
+            lineRenderer.enabled = true;
+        }
+    }
+
+    private void OnMouseDrag()
+    {
+        if (isDragging)
+        {
+            Vector3 dragCurrent = Input.mousePosition;
+            Vector3 force = dragStart - dragCurrent;
+            Vector3 direction = new Vector3(force.x, 0, force.y).normalized;
+
+            Vector3 start = transform.position;
+            Vector3 end = start + direction * lineLength;
+
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, start);
+            lineRenderer.SetPosition(1, end);
         }
     }
 
@@ -68,26 +88,9 @@ public class Puck : MonoBehaviour
             Vector3 direction = new Vector3(force.x, 0, force.y);
             rb.AddForce(direction * forceMultiplier);
             isDragging = false;
+            lineRenderer.enabled = false;
         }
     }
-
-    void ShowTrajectory(Vector3 startPosition, Vector3 initialVelocity)
-    {
-        lineRenderer.positionCount = linePoints;
-        Vector3[] points = new Vector3[linePoints];
-
-        for (int i = 0; i < linePoints; i++)
-        {
-            float t = i * timeBetweenPoints;
-            Vector3 point = startPosition + initialVelocity * t + 0.5f * Physics.gravity * t * t;
-            points[i] = point;
-        }
-
-        lineRenderer.SetPositions(points);
-        lineRenderer.enabled = true;
-    }
-
-
 
 
 }
