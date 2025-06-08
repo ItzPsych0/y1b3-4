@@ -1,0 +1,88 @@
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PauseManager : MonoBehaviour
+{
+    public GameObject pauseUI;
+    public GameObject confirmationUI;
+    public Button resumeButton;
+    public Button quitButton;
+    public Button confirmQuitYesButton;
+    public Button confirmQuitNoButton;
+
+    public bool isPaused = false;
+
+    public cameraMovement cameraMovement;
+
+    void Start()
+    {
+        pauseUI.SetActive(false);
+        confirmationUI.SetActive(false);
+
+        resumeButton.onClick.AddListener(ResumeGame);
+        quitButton.onClick.AddListener(ShowQuitConfirmation);
+        confirmQuitYesButton.onClick.AddListener(QuitGame);
+        confirmQuitNoButton.onClick.AddListener(CancelQuit);
+
+    }
+
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && confirmationUI.activeSelf == false)
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+    }
+    public void PauseGame()
+    {
+        cameraMovement.interacting = true;
+        pauseUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+   
+        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
+    }
+
+    public void ResumeGame()
+    {
+        cameraMovement.interacting = false;
+        pauseUI.SetActive(false);
+        confirmationUI.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+    }
+
+    public void ShowQuitConfirmation()
+    {
+        pauseUI.SetActive(false);
+        confirmationUI.SetActive(true);
+    }
+
+    public void CancelQuit()
+    {
+        confirmationUI.SetActive(false);
+        pauseUI.SetActive(true);
+    }
+    public void QuitGame()
+    {
+        Time.timeScale = 1f;
+        Debug.Log("Quitting game...");
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // For editor testing
+#endif
+    }
+}

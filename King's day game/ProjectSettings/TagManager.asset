@@ -9,7 +9,11 @@ TagManager:
   - Opponent
   - Koek
   - Speech
-  - Player Anchor
+  - Puck
+  - Hole 1
+  - Hole 2
+  - Hole 3
+  - Hole 4
   layers:
   - Default
   - TransparentFX
