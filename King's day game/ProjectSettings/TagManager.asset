@@ -9,6 +9,7 @@ TagManager:
   - Opponent
   - Koek
   - Speech
+  - Player Anchor
   layers:
   - Default
   - TransparentFX
