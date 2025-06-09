@@ -61,6 +61,8 @@ public class GameInteract : MonoBehaviour
         if (talking)
             {
                 cameraXRotation = 0;
+                cameraYRotation = 90;
+
                 cameraMovement.transform.position = talkWithNPC.transform.position;
                 cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
                 cameraMovement.interacting = true;
@@ -68,6 +70,7 @@ public class GameInteract : MonoBehaviour
             if (isInMinigame)
             {
                 cameraXRotation = 0;
+                cameraYRotation = 90;
                 cameraMovement.transform.position = playGame.transform.position;
                 cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
                 cameraMovement.interacting = true;
@@ -116,6 +119,7 @@ public class GameInteract : MonoBehaviour
     public void PlayGame()
     {
         Score = 0;
+       
         talking = false;
         playing = true;
         speech.SetActive(false);
@@ -164,6 +168,7 @@ public class GameInteract : MonoBehaviour
         playing = false;
         isInMinigame = false;
         gameUI.SetActive(false);
+       
 
         GameObject[] remainingPucks = GameObject.FindGameObjectsWithTag("Puck");
         foreach (GameObject puck in remainingPucks)
