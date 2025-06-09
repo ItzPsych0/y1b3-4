@@ -68,7 +68,7 @@ public class Puck : MonoBehaviour
         {
             Vector3 dragCurrent = Input.mousePosition;
             Vector3 force = dragStart - dragCurrent;
-            Vector3 direction = new Vector3(force.x, 0, force.y).normalized;
+            Vector3 direction = new Vector3(force.y, 0, force.x).normalized;
 
             Vector3 start = transform.position;
             Vector3 end = start + direction * lineLength;
@@ -85,7 +85,7 @@ public class Puck : MonoBehaviour
         {
             Vector3 dragEndPos = Input.mousePosition;
             Vector3 force = dragStart - dragEndPos;
-            Vector3 direction = new Vector3(force.x, 0, force.y);
+            Vector3 direction = new Vector3(force.y, 0, force.x);
             rb.AddForce(direction * forceMultiplier);
             isDragging = false;
             lineRenderer.enabled = false;
