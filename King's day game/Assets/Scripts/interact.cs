@@ -17,6 +17,9 @@ public class interact : MonoBehaviour
     public GameObject speech;
     public GameObject poor;
 
+    Light currentLight = null;
+    Light previousLight = null;
+
     float cameraXRotation = 0f;
     public float cameraYRotation = 0f;
 
@@ -24,8 +27,6 @@ public class interact : MonoBehaviour
     public bool talking = false;
     public bool browsing = false;
     bool playerInTrigger = false;
-
-    private Light lightPoint;
 
     private void Update()
     {
@@ -52,9 +53,9 @@ public class interact : MonoBehaviour
                 poor.SetActive(false);
                 browsing = false;
                 talking = false;
-                if (lightPoint != null)
+                if (currentLight != null)
                 {
-                    lightPoint.enabled = false;
+                    currentLight.enabled = false;
                 }
                 cameraMovement.interacting = false;
             }
@@ -70,9 +71,9 @@ public class interact : MonoBehaviour
             poor.SetActive(false);
             browsing = false;
             talking = false;
-            if (lightPoint != null)
+            if (currentLight != null)
             {
-                lightPoint.enabled = false;
+                currentLight.enabled = false;
             }
             cameraMovement.interacting = false;
         }
@@ -129,18 +130,27 @@ public class interact : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            lightPoint = hit.transform.gameObject.GetComponentInChildren<Light>(true);
-            lightPoint.enabled = true;
-            float cost = lightPoint.GetComponentInParent<Value>().value;
+            currentLight = hit.transform.gameObject.GetComponentInChildren<Light>(true);
+
+            if (currentLight != null && currentLight != previousLight)
+            {
+                if (previousLight != null)
+                    previousLight.enabled = false;
+
+                currentLight.enabled = true;
+                previousLight = currentLight;
+            }
+
+            float cost = currentLight.GetComponentInParent<Value>().value;
 
             if (Input.GetMouseButtonDown(0))
             {
                 if (moneyManager.cashAmount >= cost)
                 {
                     moneyManager.cashAmount -= cost;
-                    Destroy(lightPoint.transform.parent.gameObject);
+                    Destroy(currentLight.transform.parent.gameObject);
+                    previousLight = null;
                 }
-
                 else
                 {
                     poor.SetActive(true);
@@ -151,13 +161,19 @@ public class interact : MonoBehaviour
         }
         else
         {
-            if (lightPoint != null)
+            if (previousLight != null)
             {
-                lightPoint.enabled = false;
-                poor.SetActive(false);
+                previousLight.enabled = false;
+                previousLight = null;
             }
-        }
 
+            if (currentLight != null)
+            {
+                currentLight.enabled = false;
+            }
+
+            poor.SetActive(false);
+        }
     }
 
 }
