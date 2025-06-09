@@ -16175,6 +16175,7 @@ GameObject:
   - component: {fileID: 1051203443}
   - component: {fileID: 1051203442}
   - component: {fileID: 1051203441}
+  - component: {fileID: 1051203444}
   m_Layer: 0
   m_Name: Hole3
   m_TagString: Hole 3
@@ -16271,6 +16272,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051203439}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1051203444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051203439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634503f4ce6771e42bba9b24639b8e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holePoints: 3
+  GameInteract: {fileID: 2117830590}
 --- !u!1001 &1055689812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16361,6 +16376,7 @@ GameObject:
   - component: {fileID: 1059974617}
   - component: {fileID: 1059974616}
   - component: {fileID: 1059974615}
+  - component: {fileID: 1059974618}
   m_Layer: 0
   m_Name: Hole4
   m_TagString: Hole 4
@@ -16457,6 +16473,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059974613}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1059974618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059974613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634503f4ce6771e42bba9b24639b8e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holePoints: 4
+  GameInteract: {fileID: 2117830590}
 --- !u!1001 &1061002615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24859,6 +24889,7 @@ GameObject:
   - component: {fileID: 1558549295}
   - component: {fileID: 1558549294}
   - component: {fileID: 1558549293}
+  - component: {fileID: 1558549296}
   m_Layer: 0
   m_Name: Hole1
   m_TagString: Hole 1
@@ -24955,6 +24986,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558549291}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1558549296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558549291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634503f4ce6771e42bba9b24639b8e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holePoints: 1
+  GameInteract: {fileID: 2117830590}
 --- !u!1 &1565328569
 GameObject:
   m_ObjectHideFlags: 0
@@ -28272,6 +28317,7 @@ GameObject:
   - component: {fileID: 1759107151}
   - component: {fileID: 1759107150}
   - component: {fileID: 1759107149}
+  - component: {fileID: 1759107153}
   m_Layer: 0
   m_Name: Hole2
   m_TagString: Hole 2
@@ -28368,6 +28414,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759107147}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1759107153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759107147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634503f4ce6771e42bba9b24639b8e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holePoints: 2
+  GameInteract: {fileID: 2117830590}
 --- !u!1 &1762267523
 GameObject:
   m_ObjectHideFlags: 0
@@ -33809,7 +33869,7 @@ MonoBehaviour:
   mainCamera: {fileID: 330585545}
   talkWithNPC: {fileID: 786374431}
   Score: 0
-  playerCam: {fileID: 330585546}
+  playerCam: {fileID: 778002272}
   speech: {fileID: 1350058132}
   gameUI: {fileID: 1758306199}
   playGame: {fileID: 19685497}
