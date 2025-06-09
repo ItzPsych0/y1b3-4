@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour
@@ -16,6 +15,11 @@ public class TaskManager : MonoBehaviour
     public TextMeshProUGUI sjoelHint;
     public TextMeshProUGUI koekhapHint;
     public TextMeshProUGUI giveCubeHint;
+
+    public TextMeshProUGUI funFactText;
+
+    [TextArea] public List<string> funFacts;
+    int lastIndex = -1;
 
     public static bool quest1Complete = false;
     public static bool quest2Complete = false;
@@ -51,6 +55,7 @@ void Update()
             {
                 journal.SetActive(true);
                 Time.timeScale = 0f;
+                GiveRandomFact();
 
                 GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");
                 previouslyActiveSpeechObjects.Clear();
@@ -103,4 +108,21 @@ void Update()
     {
         SceneManager.LoadScene(0);
     }
+
+    public void GiveRandomFact()
+    {
+        if (funFacts.Count == 0) return;
+
+        int newIndex;
+        do
+        {
+            newIndex = Random.Range(0, funFacts.Count);
+        }
+        while (newIndex == lastIndex && funFacts.Count > 1);
+
+        funFactText.text = funFacts[newIndex];
+
+        lastIndex = newIndex;
+    }
+
 }
