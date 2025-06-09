@@ -3224,6 +3224,7 @@ GameObject:
   - component: {fileID: 217803554}
   - component: {fileID: 217803553}
   - component: {fileID: 217803552}
+  - component: {fileID: 217803555}
   m_Layer: 2
   m_Name: SpawnTrigger
   m_TagString: Untagged
@@ -3320,6 +3321,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217803550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &217803555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217803550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185784165906bfb46908a51a369b8889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puckPrefab: {fileID: 5817127189431856232, guid: 80ca43e1a38156b458be4e99bb887c42, type: 3}
+  puckSpawnPoint: {fileID: 1118982030}
+  currentPuck: {fileID: 5817127189431856232, guid: 80ca43e1a38156b458be4e99bb887c42, type: 3}
+  puckInTrigger: 0
+  gameInteract: {fileID: 2117830590}
 --- !u!1 &231772057
 GameObject:
   m_ObjectHideFlags: 0
@@ -33768,7 +33786,6 @@ GameObject:
   - component: {fileID: 2117830592}
   - component: {fileID: 2117830591}
   - component: {fileID: 2117830590}
-  - component: {fileID: 2117830589}
   m_Layer: 0
   m_Name: Minigame 1
   m_TagString: Untagged
@@ -33776,23 +33793,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2117830589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117830588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185784165906bfb46908a51a369b8889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puckPrefab: {fileID: 5817127189431856232, guid: 80ca43e1a38156b458be4e99bb887c42, type: 3}
-  puckSpawnPoint: {fileID: 1118982030}
-  currentPuck: {fileID: 5817127189431856232, guid: 80ca43e1a38156b458be4e99bb887c42, type: 3}
-  puckInTrigger: 0
-  gameInteract: {fileID: 2117830590}
 --- !u!114 &2117830590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33814,7 +33814,7 @@ MonoBehaviour:
   gameUI: {fileID: 1758306199}
   playGame: {fileID: 19685497}
   maxPucks: 6
-  spawnPuck: {fileID: 2117830589}
+  spawnPuck: {fileID: 217803555}
   scoreText: {fileID: 2055600514}
   pucksText: {fileID: 353920557}
   puckCount: 0
