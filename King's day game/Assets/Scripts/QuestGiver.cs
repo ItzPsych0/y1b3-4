@@ -21,12 +21,11 @@ public class QuestGiver : MonoBehaviour
 
     bool talking = false;
     bool playerInTrigger = false;
-    bool questTriggered = false;
     public TextMeshProUGUI task4;
     public TextMeshProUGUI task4Hint;
     Tasks tasks;
     public GameObject done;
-
+    public float cost;
     private void Start()
     {
         tasks = FindFirstObjectByType<Tasks>();
@@ -102,27 +101,21 @@ public class QuestGiver : MonoBehaviour
         quest.SetActive(true);
         tasks.TaskUpdated();
         questButton.SetActive(false);
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, can you do me a favour? I really wanted that white cube over there, but I forgot my wallet. Could you please buy it for me?";
-        questTriggered = true;
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "I'd hate to ask.. but can you do me a favour? My nieces birthday is coming up but and I have no clue what kids are into nowadays. Could you pick something out from the market for me? I'll make sure to pay you back";
     }
 
-    public void QuestUpdate()
+    public void QuestUpdated()
     {
         giveCube.SetActive(true);
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey there, did you manage to find the cube?";
-        if(!questTriggered)
-        {
-            quest.SetActive(true);
-            questButton.SetActive(false);
-            speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, that cube... may I please have it? I really wanted it but forgot my wallet at home.";
-        }
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, did you manage to find something?";
     }
 
     public void CubeGiven()
     {
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Thank you very much!";
-        task4.text = $"<s>Get the guy a white cube</s>";
-        task4Hint.text = $"<s>Current objective: Give the cube to the guy</s>";
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Thank you so much! Here's your money back, as promised";
+        moneyManager.cashAmount += cost;
+        task4.text = $"<s>Find the guy a birthday present</s>";
+        task4Hint.text = $"<s>Current objective: Find something suitable for a kid</s>";
         TaskManager.quest4Complete = true;
         tasks.TaskUpdated();
         done.SetActive(true);

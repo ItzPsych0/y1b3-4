@@ -1,7 +1,7 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class TaskUpdate : MonoBehaviour
+public class Task5Update : MonoBehaviour
 {
     public TextMeshProUGUI task;
     public TextMeshProUGUI taskHint;
@@ -16,14 +16,14 @@ public class TaskUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (!Application.isPlaying || TaskManager.quest1Complete == true)
+        if (!Application.isPlaying || TaskManager.quest5Complete == true)
         {
             return;
         }
 
         task.text = taskText;
         taskHint.text = taskHintText;
-        TaskManager.quest1Complete = true;
+        TaskManager.quest5Complete = true;
         tasks.TaskUpdated();
         done.SetActive(true);
     }

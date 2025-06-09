@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -79,10 +80,6 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Debug.Log("Quitting game...");
-        Application.Quit();
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // For editor testing
-#endif
+        SceneManager.LoadScene(0);
     }
 }

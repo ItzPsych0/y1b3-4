@@ -28,6 +28,12 @@ public class GameInteract : MonoBehaviour
     bool playerInTrigger = false;
     public int puckCount = 0;
     private bool isInMinigame = false;
+
+    public TextMeshProUGUI task3;
+    public TextMeshProUGUI task3Hint;
+    public GameObject done;
+    public Tasks tasks;
+
     void Update()
     {
 
@@ -179,8 +185,17 @@ public class GameInteract : MonoBehaviour
         if (Score >= 15) 
         {
             moneyManager.cashAmount += 5;
+            UpdateQuest();
         }
 
+    }
+    void UpdateQuest()
+    {
+        task3.text = $"<s>Win a game of sjoelen</s>";
+        task3Hint.text = $"<s>Current objective: find someone to play sjoelen</s>";
+        TaskManager.quest3Complete = true;
+        tasks.TaskUpdated();
+        done.SetActive(true);
     }
 
 

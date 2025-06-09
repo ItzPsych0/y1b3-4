@@ -23,8 +23,9 @@ public class TaskManager : MonoBehaviour
 
     public static bool quest1Complete = false;
     public static bool quest2Complete = false;
-    /*public static bool quest3Complete = false;*/
+    public static bool quest3Complete = false;
     public static bool quest4Complete = false;
+    public static bool quest5Complete = false;
 
     public GameObject endOfGame;
 
@@ -36,8 +37,9 @@ public class TaskManager : MonoBehaviour
         endOfGame.SetActive(false);
         quest1Complete = false;
         quest2Complete = false;
-        /*quest3Complete = false;*/
+        quest3Complete = false;
         quest4Complete = false;
+        quest5Complete = false;
 }
 void Update()
     {
@@ -85,12 +87,7 @@ void Update()
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene(0);
-        }
-
-        if(quest1Complete &&  quest2Complete /*&& quest3Complete*/ && quest4Complete)
+        if(quest1Complete && quest2Complete && quest3Complete && quest4Complete && quest5Complete)
         {
             endOfGame.SetActive(true);
             Time.timeScale = 0f;
