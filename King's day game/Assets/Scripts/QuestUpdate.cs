@@ -13,6 +13,8 @@ public class QuestUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (!Application.isPlaying) return;
+
         task4Hint.text = $"Current objective: Give the cube to the guy";
         tasks.TaskUpdated();
         questGiver.QuestUpdate();

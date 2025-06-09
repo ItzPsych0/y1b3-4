@@ -14,6 +14,11 @@ public class TaskUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
         task1.text = $"<s>Buy some books</s>";
         task1Hint.text = $"<s>Current objective: look around the market place for books</s>";
         TaskManager.quest1Complete = true;
