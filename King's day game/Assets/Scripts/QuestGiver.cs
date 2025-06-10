@@ -105,6 +105,7 @@ public class QuestGiver : MonoBehaviour
         tasks.TaskUpdated();
         questButton.SetActive(false);
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "I'd hate to ask.. but can you do me a favour? My nieces birthday is coming up but and I have no clue what kids are into nowadays. Could you pick something out from the market for me? I'll make sure to pay you back";
+        TaskManager.quest4Found = true;
     }
 
     public void QuestUpdate()

@@ -26,7 +26,7 @@ public class TaskManager : MonoBehaviour
     public static bool quest3Complete = false;
     public static bool quest4Complete = false;
     public static bool quest5Complete = false;
-    public bool quest4Found;
+    public static bool quest4Found = false;
     public GameObject endOfGame;
 
     bool cubeAcquired;
