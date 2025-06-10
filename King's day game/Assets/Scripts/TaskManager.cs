@@ -26,7 +26,7 @@ public class TaskManager : MonoBehaviour
     public static bool quest3Complete = false;
     public static bool quest4Complete = false;
     public static bool quest5Complete = false;
-
+    public bool quest4Found;
     public GameObject endOfGame;
 
     bool cubeAcquired;
@@ -39,6 +39,7 @@ public class TaskManager : MonoBehaviour
         quest2Complete = false;
         quest3Complete = false;
         quest4Complete = false;
+        quest4Found = false;
         quest5Complete = false;
 }
 void Update()
@@ -87,7 +88,19 @@ void Update()
             }
         }
 
-        if(quest1Complete && quest2Complete && quest3Complete && quest4Complete && quest5Complete)
+        if(quest1Complete && quest2Complete && quest3Complete && !quest4Found && quest5Complete)
+        {
+            endOfGame.SetActive(true);
+            Time.timeScale = 0f;
+            GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");                   
+            foreach (GameObject obj in talking)
+            {
+                obj.SetActive(false);
+            }
+            Cursor.lockState = CursorLockMode.None;
+            cameraMovement.interacting = true;
+        }
+        else if(quest1Complete && quest2Complete && quest3Complete && quest4Found && quest4Complete && quest5Complete)
         {
             endOfGame.SetActive(true);
             Time.timeScale = 0f;

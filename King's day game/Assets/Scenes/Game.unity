@@ -12951,7 +12951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &878864274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14104,6 +14104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   task4Hint: {fileID: 1551648909}
+  questTriggered: 0
 --- !u!1001 &945610956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24907,7 +24908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Current objective: look around the market place for a white cube'
+  m_text: 'Current objective: Find something suitable for a kid'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -33176,6 +33177,7 @@ MonoBehaviour:
   task4: {fileID: 1197675329}
   task4Hint: {fileID: 1551648909}
   done: {fileID: 1773090506}
+  cost: 0
 --- !u!65 &2027718026
 BoxCollider:
   m_ObjectHideFlags: 0

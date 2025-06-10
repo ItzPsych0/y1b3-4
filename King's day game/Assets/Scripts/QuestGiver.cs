@@ -26,9 +26,12 @@ public class QuestGiver : MonoBehaviour
     Tasks tasks;
     public GameObject done;
     public float cost;
+    QuestUpdate questUpdate;
+    bool isTriggered;
     private void Start()
     {
         tasks = FindFirstObjectByType<Tasks>();
+        isTriggered = false;
     }
 
     private void Update()
@@ -104,10 +107,15 @@ public class QuestGiver : MonoBehaviour
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "I'd hate to ask.. but can you do me a favour? My nieces birthday is coming up but and I have no clue what kids are into nowadays. Could you pick something out from the market for me? I'll make sure to pay you back";
     }
 
-    public void QuestUpdated()
+    public void QuestUpdate()
     {
         giveCube.SetActive(true);
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, did you manage to find something?";
+        if (!isTriggered)
+        {
+            tasks.TaskUpdated();
+            isTriggered = true;
+        }
     }
 
     public void CubeGiven()
@@ -115,7 +123,7 @@ public class QuestGiver : MonoBehaviour
         speech.GetComponentInChildren<TextMeshProUGUI>().text = "Thank you so much! Here's your money back, as promised";
         moneyManager.cashAmount += cost;
         task4.text = $"<s>Find the guy a birthday present</s>";
-        task4Hint.text = $"<s>Current objective: Find something suitable for a kid</s>";
+        task4Hint.text = $"<s>Current objective: Give the present to the guy</s>";
         TaskManager.quest4Complete = true;
         tasks.TaskUpdated();
         done.SetActive(true);

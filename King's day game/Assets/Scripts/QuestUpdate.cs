@@ -15,11 +15,10 @@ public class QuestUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (!Application.isPlaying || questTriggered == true) return;
+        if (!Application.isPlaying || TaskManager.quest4Complete == true) return;
 
         task4Hint.text = $"Current objective: Give the present to the guy";
-        tasks.TaskUpdated();
-        questGiver.QuestUpdated();
+        questGiver.QuestUpdate();
         questGiver.cost = GetComponent<Value>().value;
     }
 }
