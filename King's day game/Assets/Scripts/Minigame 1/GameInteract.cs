@@ -1,7 +1,7 @@
 using TMPro;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+
 
 public class GameInteract : MonoBehaviour
 {
@@ -35,13 +35,14 @@ public class GameInteract : MonoBehaviour
 
     void Update()
     {
-
+        // Check for interaction input (E key) when player is near NPC and not already playing minigame
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E) && isInMinigame == false)
         {
             talking = !talking;
 
             if (talking)
             {
+                // Enter talking state: move camera, disable player movement, show dialogue
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
@@ -51,6 +52,7 @@ public class GameInteract : MonoBehaviour
             }
             else if (!talking)
             {
+                // Exit talking state: restore camera, movement, hide dialogue
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
                 cameraMovement.interacting = false;
@@ -63,7 +65,9 @@ public class GameInteract : MonoBehaviour
 
 
         }
+        // While talking: lock camera to NPC
         if (talking)
+
             {
                 cameraXRotation = 0;
                 cameraYRotation = 90;
@@ -72,7 +76,8 @@ public class GameInteract : MonoBehaviour
                 cameraMovement.transform.localRotation = Quaternion.Euler(cameraXRotation, cameraYRotation, 0);
                 cameraMovement.interacting = true;
             }
-            if (isInMinigame)
+        // While playing minigame: lock camera to minigame position
+        if (isInMinigame)
             {
                 cameraXRotation = 0;
                 cameraYRotation = 90;
@@ -81,7 +86,8 @@ public class GameInteract : MonoBehaviour
                 cameraMovement.interacting = true;
             }
 
-            if (isInMinigame)
+        // Handles the call for more pucks to spawn as well as to when call the end of the minigame
+        if (isInMinigame)
             {
                 if (!spawnPuck.puckInTrigger && puckCount < maxPucks)
                 {
@@ -121,6 +127,7 @@ public class GameInteract : MonoBehaviour
         }
     }
 
+    //When called will start the minigame logic
     public void PlayGame()
     {
         Score = 0;
@@ -175,12 +182,13 @@ public class GameInteract : MonoBehaviour
         gameUI.SetActive(false);
        
 
+        //Removes pucks from the scene after the minigame ends
         GameObject[] remainingPucks = GameObject.FindGameObjectsWithTag("Puck");
         foreach (GameObject puck in remainingPucks)
         {
             Destroy(puck);
         }
-
+        //Condition to win the minigame and gain a reward
         if (Score >= 15) 
         {
             moneyManager.cashAmount += 5;
@@ -188,6 +196,8 @@ public class GameInteract : MonoBehaviour
         }
 
     }
+
+    // Updates quest when minigame is completed and won
     void UpdateQuest()
     {
         task3.text = $"<s>Win a game of sjoelen</s>";

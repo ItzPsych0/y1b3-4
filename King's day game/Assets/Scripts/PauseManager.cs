@@ -28,27 +28,35 @@ public class PauseManager : MonoBehaviour
 
     }
 
-    
+
     void Update()
-    {
+    {   // Checks for escape key to be pressed when not in the confirmation UI 
         if (Input.GetKeyDown(KeyCode.Escape) && confirmationUI.activeSelf == false)
-        {
-            if (isPaused)
-                ResumeGame();
+        {    // used for blocking pause while talking or playing minigame
+            if (!cameraMovement.interacting)
+            {
+                if (isPaused)
+                    ResumeGame();
+                else
+                    PauseGame();
+            }
             else
-                PauseGame();
+            {
+                return;
+            }
         }
     }
+
     public void PauseGame()
     {
         cameraMovement.interacting = true;
         pauseUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f;    //freeze game time
         isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None; //unlocks cursor
+    
 
-   
+        //Stops player movement
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
     }
 
@@ -57,11 +65,11 @@ public class PauseManager : MonoBehaviour
         cameraMovement.interacting = false;
         pauseUI.SetActive(false);
         confirmationUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f;    //Resumes game time
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+      
+        //Returns movement control to the player
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
     }
 
@@ -80,6 +88,6 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Debug.Log("Quitting game...");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);  //Loads back to the main menu
     }
 }

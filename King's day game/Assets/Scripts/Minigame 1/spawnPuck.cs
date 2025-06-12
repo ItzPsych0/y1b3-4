@@ -9,10 +9,11 @@ public class spawnPuck : MonoBehaviour
     public bool puckInTrigger = false;
     public GameInteract gameInteract;
 
+    //Spawns the Puck prefab at a specific spawn point
     public void SpawnPuck()
     {
         currentPuck = Instantiate(puckPrefab, puckSpawnPoint.position, puckSpawnPoint.rotation);
-        puckInTrigger = true;
+        puckInTrigger = true; //Sets flag to true since the puck spawns inside this trigger
     }
 
     private void OnTriggerExit(Collider other)

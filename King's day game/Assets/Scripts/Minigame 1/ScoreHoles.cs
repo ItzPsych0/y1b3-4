@@ -1,8 +1,9 @@
 using UnityEngine;
 
+//This class is responsible for scoring an ammount of points when something enters its trigger
 public class ScoreHoles : MonoBehaviour
 {
-    public int holePoints = 2;
+    public int holePoints;
     public GameInteract GameInteract;
     void Update()
     {

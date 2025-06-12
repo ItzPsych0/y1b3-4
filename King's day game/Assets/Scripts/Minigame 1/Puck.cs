@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class Puck : MonoBehaviour
@@ -14,16 +14,16 @@ public class Puck : MonoBehaviour
     private float stopTimer = 0f;
     private float stopDelay = 1f;
 
-  
 
-    [Header("Launch Settings")]
     public float stopVelocityThreshold = 0.1f;
 
     public LineRenderer lineRenderer;
     void Start()
     {
+        // Activates the pucks RigidBody
         rb = GetComponent<Rigidbody>();
 
+        // If no lineReader is assigned, assign it
         if (lineRenderer == null)
         {
             lineRenderer = GetComponent<LineRenderer>();
@@ -33,12 +33,14 @@ public class Puck : MonoBehaviour
     
     void Update()
     {
+        // Check if puck has been launched and hasn't been marked as stopped
         if (launched && !hasNotified)
         {
             if (rb.linearVelocity.magnitude < 0.1f)
             {
                 stopTimer += Time.deltaTime;
 
+                // If it's been stopped long enough, mark as fully stopped
                 if (stopTimer >= stopDelay)
                 {
                     hasNotified = true;
@@ -51,9 +53,11 @@ public class Puck : MonoBehaviour
         }
     }
 
+    //When player clicks on the puck
     private void OnMouseDown()
     {
         Debug.Log("Puck clicked!");
+        // Only allow aiming if the puck is currently stopped
         if (rb.linearVelocity.magnitude < stopVelocityThreshold)
         {
             dragStart = Input.mousePosition;
@@ -66,13 +70,15 @@ public class Puck : MonoBehaviour
     {
         if (isDragging)
         {
-            Vector3 dragCurrent = Input.mousePosition;
-            Vector3 force = dragStart - dragCurrent;
-            Vector3 direction = new Vector3(force.y, 0, force.x).normalized;
+            Vector3 dragCurrent = Input.mousePosition; //Current mouse position(while dragging)
+            Vector3 force = dragStart - dragCurrent; //calculate distance dragged
+            Vector3 direction = new Vector3(force.y, 0, force.x).normalized; // Convert screen drag to world direction
 
+            // Calculate start and end point for line
             Vector3 start = transform.position;
             Vector3 end = start + direction * lineLength;
 
+            // Set the 2 points for LineRenderer to draw line
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, start);
             lineRenderer.SetPosition(1, end);
