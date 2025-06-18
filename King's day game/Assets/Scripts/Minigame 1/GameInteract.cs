@@ -11,6 +11,8 @@ public class GameInteract : MonoBehaviour
     public int Score = 0;
     public Transform playerCam;
     public GameObject speech;
+    public GameObject endSpeech;
+    public GameObject loseSpeech;
     public GameObject gameUI;
     public Transform playGame;
     public int maxPucks;
@@ -21,6 +23,10 @@ public class GameInteract : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI pucksText;
+
+                
+    public TextMeshProUGUI winFinalScoreText;
+    public TextMeshProUGUI loseFinalScoreText;
 
     bool talking = false;
     bool playing = false;
@@ -100,7 +106,7 @@ public class GameInteract : MonoBehaviour
                 Rigidbody lastPuckRb = spawnPuck.GetCurrentPuckRigidbody();
                 if (lastPuckRb != null && lastPuckRb.linearVelocity.magnitude < 0.1f)
                 {
-                    EndMinigame();
+                    PreEndMinigame();
                 }
             }
             }
@@ -168,6 +174,43 @@ public class GameInteract : MonoBehaviour
         pucksText.text = "Pucks: " + (maxPucks+1 - puckCount);
     }
 
+    public void PreEndMinigame()
+    {
+
+        gameUI.SetActive(false);
+        cameraMovement.target = talkWithNPC;
+        cameraMovement.transform.position = talkWithNPC.position;
+        cameraMovement.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        cameraMovement.interacting = true;
+
+        if (Score >= 15)
+        {
+            ShowWinDialogue();
+        }
+        else
+        {
+            ShowLoseDialogue();
+        }
+
+    }
+
+    private void ShowWinDialogue()
+    {
+
+        endSpeech.SetActive(true);
+
+        winFinalScoreText.text = "Waw good job, you got " + Score + " points! Here's your reward.";
+
+    }
+
+    private void ShowLoseDialogue()
+    {
+
+        loseSpeech.SetActive(true);
+
+        loseFinalScoreText.text = "Aww so close, you got " + Score + " points! Better luck next time.";
+    }
+
     public  void EndMinigame()
     {
 
@@ -180,7 +223,9 @@ public class GameInteract : MonoBehaviour
         playing = false;
         isInMinigame = false;
         gameUI.SetActive(false);
-       
+        loseSpeech.SetActive(false);
+        endSpeech.SetActive(false);
+
 
         //Removes pucks from the scene after the minigame ends
         GameObject[] remainingPucks = GameObject.FindGameObjectsWithTag("Puck");

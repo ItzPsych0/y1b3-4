@@ -35,6 +35,7 @@ public class PauseManager : MonoBehaviour
         {    // used for blocking pause while talking or playing minigame
             if (!cameraMovement.interacting)
             {
+
                 if (isPaused)
                     ResumeGame();
                 else
