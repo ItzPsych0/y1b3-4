@@ -42,6 +42,7 @@ public class interact : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
                 howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
+                PauseManager.isInteracting = true;
             }
             else if(!talking || browsing)
             {
@@ -53,6 +54,7 @@ public class interact : MonoBehaviour
                 poor.SetActive(false);
                 browsing = false;
                 talking = false;
+                PauseManager.isInteracting = false;
                 if (currentLight != null)
                 {
                     currentLight.enabled = false;
@@ -61,7 +63,7 @@ public class interact : MonoBehaviour
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && (talking || browsing))
         {
             GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
             GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -71,6 +73,7 @@ public class interact : MonoBehaviour
             poor.SetActive(false);
             browsing = false;
             talking = false;
+            PauseManager.isInteracting = false;
             if (currentLight != null)
             {
                 currentLight.enabled = false;
