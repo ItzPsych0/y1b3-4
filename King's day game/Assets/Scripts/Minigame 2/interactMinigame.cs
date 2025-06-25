@@ -44,6 +44,7 @@ public class interactMinigame : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
                 howToInteract.SetActive(false);
+                PauseManager.isInteracting = true;
             }
             else if (!talking)
             {
@@ -54,10 +55,11 @@ public class interactMinigame : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 speech.SetActive(false);
                 talking = false;
+                PauseManager.isInteracting = false;
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && talking)
         {
             GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
             GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -66,6 +68,7 @@ public class interactMinigame : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             speech.SetActive(false);
             talking = false;
+            PauseManager.isInteracting = false;
         }
 
         if (talking)
@@ -116,6 +119,7 @@ public class interactMinigame : MonoBehaviour
         talking = false;
         cameraMovement.interacting = false;
         taskManager.inMinigame = false;
+        PauseManager.isInteracting = false;
     }
 
     public void VictoryReturn()
@@ -130,6 +134,7 @@ public class interactMinigame : MonoBehaviour
         talking = false;
         cameraMovement.interacting = false;
         taskManager.inMinigame = false;
+        PauseManager.isInteracting = false;
         UpdateQuest();
     }
 

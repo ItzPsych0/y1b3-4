@@ -48,6 +48,7 @@ public class QuestGiver : MonoBehaviour
                 howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
+                PauseManager.isInteracting = true;
             }
             else if (!talking)
             {
@@ -58,10 +59,11 @@ public class QuestGiver : MonoBehaviour
                 speech.SetActive(false);
                 talking = false;
                 cameraMovement.interacting = false;
+                PauseManager.isInteracting = false;
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && talking)
         {
             GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
             GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -70,6 +72,7 @@ public class QuestGiver : MonoBehaviour
             speech.SetActive(false);
             talking = false;
             cameraMovement.interacting = false;
+            PauseManager.isInteracting = false;
         }
 
         if (talking)

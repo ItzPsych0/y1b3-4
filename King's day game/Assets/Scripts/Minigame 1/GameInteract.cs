@@ -47,7 +47,7 @@ public class GameInteract : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
-
+                PauseManager.isInteracting = true;
             }
             else if (!talking)
             {
@@ -58,11 +58,22 @@ public class GameInteract : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 speech.SetActive(false);
                 talking = false;
+                PauseManager.isInteracting = false;
             }
-
-
-
         }
+
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && talking)
+        {
+            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
+            cameraMovement.interacting = false;
+            cameraMovement.target = playerCam;
+            Cursor.lockState = CursorLockMode.Locked;
+            speech.SetActive(false);
+            talking = false;
+            PauseManager.isInteracting = false;
+        }
+
         if (talking)
             {
                 cameraXRotation = 0;
