@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e941d321237b74f9e8839145662fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMultiplier: 6
+  smoothingSpeed: 10
+  forceMultiplier: 8
   lineLength: 0.5
   stopVelocityThreshold: 0.1
   lineRenderer: {fileID: 0}
