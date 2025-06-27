@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 
 using UnityEngine;
@@ -39,6 +40,8 @@ public class GameInteract : MonoBehaviour
     public GameObject done;
     public Tasks tasks;
 
+    private HashSet<int> scoredHoleTypes = new HashSet<int>();
+    private bool bonusAwarded = false; // To avoid awarding bonus multiple times
     void Update()
     {
         // Check for interaction input (E key) when player is near NPC and not already playing minigame
@@ -152,7 +155,10 @@ public class GameInteract : MonoBehaviour
 
         puckCount = 0;
         isInMinigame = true;
-   
+
+        scoredHoleTypes.Clear();
+        bonusAwarded = false;
+
     }
 
 
@@ -252,6 +258,19 @@ public class GameInteract : MonoBehaviour
         done.SetActive(true);
     }
 
+    public void RegisterHoleScore(int holePoints)
+    {
+        scoredHoleTypes.Add(holePoints);
+
+        if (!bonusAwarded && scoredHoleTypes.Contains(2) && scoredHoleTypes.Contains(3) &&
+            scoredHoleTypes.Contains(4) && scoredHoleTypes.Contains(1)) // adjust hole values if needed
+        {
+            Score += 10; // or Score += bonusAmount;
+            UpdateScoreUI();
+            bonusAwarded = true;
+            Debug.Log("Bonus awarded for scoring in all 4 hole types!");
+        }
+    }
 
 
 }

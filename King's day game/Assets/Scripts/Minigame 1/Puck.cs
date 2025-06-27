@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Puck : MonoBehaviour
 {
+
+    private float dragDeadZone = 10f;            // Ignore tiny mouse movements
+    private Vector3 smoothedDirection = Vector3.forward;
+    public float smoothingSpeed = 10f;           // Higher = faster smoothing
+
     private Rigidbody rb;
     private bool launched = false;
     private bool isDragging = false;
@@ -70,20 +75,28 @@ public class Puck : MonoBehaviour
     {
         if (isDragging)
         {
-            Vector3 dragCurrent = Input.mousePosition; //Current mouse position(while dragging)
-            Vector3 force = dragStart - dragCurrent; //calculate distance dragged
-            Vector3 direction = new Vector3(force.y, 0, force.x).normalized; // Convert screen drag to world direction
+            Vector3 dragCurrent = Input.mousePosition;
+            Vector3 dragVector = dragStart - dragCurrent;
 
-            // Calculate start and end point for line
+            // Only update aiming direction if drag is large enough
+            if (dragVector.magnitude > dragDeadZone)
+            {
+                Vector3 targetDirection = new Vector3(dragVector.y, 0, dragVector.x).normalized;
+
+                // Smoothly interpolate toward target direction
+                smoothedDirection = Vector3.Lerp(smoothedDirection, targetDirection, Time.deltaTime * smoothingSpeed);
+            }
+
+            // Always update line with the current smoothed direction
             Vector3 start = transform.position;
-            Vector3 end = start + direction * lineLength;
+            Vector3 end = start + smoothedDirection * lineLength;
 
-            // Set the 2 points for LineRenderer to draw line
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, start);
             lineRenderer.SetPosition(1, end);
         }
     }
+
 
     private void OnMouseUp()
     {

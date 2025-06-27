@@ -12,6 +12,10 @@ public class ScoreHoles : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameInteract.ScorePoints(holePoints);
+        if (other.CompareTag("Puck"))
+        {
+            GameInteract.ScorePoints(holePoints);
+            GameInteract.RegisterHoleScore(holePoints);
+        }
     }
 }
