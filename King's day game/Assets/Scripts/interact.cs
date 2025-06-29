@@ -63,7 +63,7 @@ public class interact : MonoBehaviour
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && (talking || browsing))
+        if(playerInTrigger && Input.GetKeyUp(KeyCode.Escape) && (talking || browsing))
         {
             GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
             GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;

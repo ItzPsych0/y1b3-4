@@ -7204,6 +7204,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
       insertIndex: -1
       addedObject: {fileID: 232278921}
+    - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 232278925}
   m_SourcePrefab: {fileID: 100100000, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
 --- !u!4 &232278919 stripped
 Transform:
@@ -7241,6 +7244,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 3
+--- !u!65 &232278925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232278920}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06022512, y: 0.04602473, z: 0.062072866}
+  m_Center: {x: -0.000000002793969, y: -0.010783938, z: -0.009703684}
 --- !u!1001 &235964645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7317,6 +7341,10 @@ PrefabInstance:
       propertyPath: dialogueText
       value: Happy King's Day! How can I help you?
       objectReference: {fileID: 0}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -7407,6 +7435,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 5616612809748953920, guid: bb49497e194367145871fdd74475688b, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 5616612809748953920, guid: bb49497e194367145871fdd74475688b, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -9150,6 +9182,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 1340467623119439304, guid: 11e7fc07b5871ec48933878a7dbd2dcb, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 1340467623119439304, guid: 11e7fc07b5871ec48933878a7dbd2dcb, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -13271,6 +13307,10 @@ PrefabInstance:
       value: Happy King's Day! How can I help you?
       objectReference: {fileID: 0}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -16412,6 +16452,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -16506,6 +16550,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -24538,6 +24586,10 @@ PrefabInstance:
       value: Happy King's Day! How can I help you?
       objectReference: {fileID: 0}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -27485,6 +27537,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -28306,6 +28362,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
       insertIndex: -1
       addedObject: {fileID: 972324993}
+    - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 972324997}
   m_SourcePrefab: {fileID: 100100000, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
 --- !u!4 &972324991 stripped
 Transform:
@@ -28343,6 +28402,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 3
+--- !u!65 &972324997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972324992}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06022512, y: 0.04602472, z: 0.062072866}
+  m_Center: {x: -0.00000006239861, y: -0.0107839955, z: -0.00970368}
 --- !u!1001 &977803398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32627,6 +32707,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -34094,127 +34178,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e5c9ce183f8d6914bae6de087e9b8516, type: 3}
   m_PrefabInstance: {fileID: 1125560785}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1129652827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1129652828}
-  - component: {fileID: 1129652830}
-  - component: {fileID: 1129652829}
-  m_Layer: 0
-  m_Name: Point Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1129652828
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129652827}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.029999979, y: 0.029999992, z: 0.029999996}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1566642182}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1129652829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129652827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
---- !u!108 &1129652830
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129652827}
-  m_Enabled: 0
-  serializedVersion: 11
-  m_Type: 2
-  m_Color: {r: 0.8037735, g: 0.74381113, b: 0.41098604, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!1 &1129806304
 GameObject:
   m_ObjectHideFlags: 0
@@ -45257,6 +45220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -47041,29 +47008,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 841122403}
     m_Modifications:
+    - target: {fileID: 3446794797416364924, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
+      propertyPath: task4Hint
+      value: 
+      objectReference: {fileID: 1551648909}
     - target: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
       propertyPath: m_Name
       value: Teddy bear(fix1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      propertyPath: m_TagString
-      value: Wares
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304048951812625974, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.3333337
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304048951812625974, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.4444447
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304048951812625974, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5304048951812625974, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47107,17 +47058,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5304048951812625974, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1129652828}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1968725854}
-    - targetCorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1968725853}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
 --- !u!4 &1566642182 stripped
 Transform:
@@ -52218,6 +52160,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 1340467623119439304, guid: 11e7fc07b5871ec48933878a7dbd2dcb, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 1340467623119439304, guid: 11e7fc07b5871ec48933878a7dbd2dcb, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -55707,6 +55653,10 @@ PrefabInstance:
       value: Happy King's Day! How can I help you?
       objectReference: {fileID: 0}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -57965,6 +57915,10 @@ PrefabInstance:
       value: Happy King's Day! How can I help you?
       objectReference: {fileID: 0}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -59725,37 +59679,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968355783}
   m_CullTransparentMesh: 1
---- !u!1 &1968725850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4814370850728004748, guid: 0db8fab019df5bf4992b388e47833146, type: 3}
-  m_PrefabInstance: {fileID: 1566642181}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1968725853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968725850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fe7a13371812442be27f975240a649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  task4Hint: {fileID: 1551648909}
---- !u!114 &1968725854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968725850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0b10f9d59cb4c4e8f93ef68410c15e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 3
 --- !u!1 &1969323670
 GameObject:
   m_ObjectHideFlags: 0
@@ -60854,6 +60777,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
       propertyPath: cameraMovement
       value: 
@@ -62528,6 +62455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
+    - target: {fileID: 6136188394443556553, guid: 52c5c13deff567c4da8d34d4749bdd32, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
@@ -63421,10 +63352,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpet Stall
       objectReference: {fileID: 0}
-    - target: {fileID: 3975067788947414410, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 3acea6ec4ce5c324d8f4a9d1a6313bb8, type: 2}
     - target: {fileID: 5078032003442825577, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31
@@ -63482,17 +63409,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
-      propertyPath: dialogueText
-      value: Happy King's Day! How can I help you?
-      objectReference: {fileID: 0}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 373760865}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 330585548}
-    - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
-      propertyPath: cameraYRotation
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: interactManager
       value: 
