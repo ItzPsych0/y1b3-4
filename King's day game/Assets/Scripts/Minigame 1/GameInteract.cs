@@ -70,6 +70,7 @@ public class GameInteract : MonoBehaviour
                 cameraMovement.target = playerCam;
                 Cursor.lockState = CursorLockMode.Locked;
                 speech.SetActive(false);
+                tutorial.SetActive(false);
                 talking = false;
                 PauseManager.isInteracting = false;
             }
@@ -156,6 +157,7 @@ public class GameInteract : MonoBehaviour
         gameUI.SetActive(true);
         UpdateScoreUI();
         UpdatePucksUI();
+        spawnPuck.puckInTrigger = false;
 
         Cursor.lockState = CursorLockMode.None;
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
