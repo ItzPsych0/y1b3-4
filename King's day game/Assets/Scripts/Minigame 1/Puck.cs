@@ -1,10 +1,8 @@
 
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Puck : MonoBehaviour
 {
-    public Slider strengthSlider;
 
     private float dragDeadZone = 10f;            // Ignore tiny mouse movements
     private Vector3 smoothedDirection = Vector3.forward;
@@ -27,17 +25,14 @@ public class Puck : MonoBehaviour
     public LineRenderer lineRenderer;
     void Start()
     {
+        // Activates the pucks RigidBody
         rb = GetComponent<Rigidbody>();
 
+        // If no lineReader is assigned, assign it
         if (lineRenderer == null)
-            lineRenderer = GetComponent<LineRenderer>();
-
-        if (strengthSlider == null)
         {
-            strengthSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
-            Debug.Log("Found slider at runtime: " + strengthSlider);
+            lineRenderer = GetComponent<LineRenderer>();
         }
-
         lineRenderer.enabled = false;
     }
     
@@ -92,25 +87,13 @@ public class Puck : MonoBehaviour
                 smoothedDirection = Vector3.Lerp(smoothedDirection, targetDirection, Time.deltaTime * smoothingSpeed);
             }
 
-
-
             // Always update line with the current smoothed direction
             Vector3 start = transform.position;
             Vector3 end = start + smoothedDirection * lineLength;
 
             lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, start); 
+            lineRenderer.SetPosition(0, start);
             lineRenderer.SetPosition(1, end);
-
-            if (strengthSlider != null)
-            {
-                float rawForce = dragVector.magnitude;
-                float normalizedForce = Mathf.Clamp01(rawForce / 300f); // Adjust denominator to control sensitivity
-                strengthSlider.value = normalizedForce;
-                Debug.Log("Slider Force Value: " + strengthSlider.value);
-
-            }
-
         }
     }
 
@@ -125,11 +108,6 @@ public class Puck : MonoBehaviour
             rb.AddForce(direction * forceMultiplier);
             isDragging = false;
             lineRenderer.enabled = false;
-        }
-
-        if (strengthSlider != null)
-        {
-            strengthSlider.value = 0;
         }
     }
 

@@ -12,7 +12,6 @@ public class GameInteract : MonoBehaviour
     public int Score = 0;
     public Transform playerCam;
     public GameObject speech;
-    public GameObject tutorial;
     public GameObject endSpeech;
     public GameObject loseSpeech;
     public GameObject gameUI;
@@ -139,12 +138,6 @@ public class GameInteract : MonoBehaviour
         }
     }
 
-    public void PreGame()
-    {
-        speech.SetActive(false);
-        tutorial.SetActive(true);
-    }
-
     //When called will start the minigame logic
     public void PlayGame()
     {
@@ -152,7 +145,7 @@ public class GameInteract : MonoBehaviour
 
         talking = false;
         playing = true;
-        tutorial.SetActive(false);
+        speech.SetActive(false);
         gameUI.SetActive(true);
         UpdateScoreUI();
         UpdatePucksUI();
