@@ -15,6 +15,7 @@ public class GameInteract : MonoBehaviour
     public GameObject tutorial;
     public GameObject endSpeech;
     public GameObject loseSpeech;
+    public GameObject howToInteract;
     public GameObject gameUI;
     public Transform playGame;
     public int maxPucks;
@@ -57,6 +58,7 @@ public class GameInteract : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
+                howToInteract.SetActive(false);
                 speech.SetActive(true);
                 PauseManager.isInteracting = true;
 
@@ -128,6 +130,7 @@ public class GameInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
+            howToInteract.SetActive(true);
         }
     }
 
@@ -136,6 +139,7 @@ public class GameInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
+            howToInteract.SetActive(false);
         }
     }
 
