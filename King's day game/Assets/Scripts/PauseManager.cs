@@ -11,6 +11,8 @@ public class PauseManager : MonoBehaviour
     public Button quitButton;
     public Button confirmQuitYesButton;
     public Button confirmQuitNoButton;
+    public GameObject tutorial;
+
 
     public bool isPaused = false;
     public static bool isInteracting;
@@ -86,4 +88,11 @@ public class PauseManager : MonoBehaviour
         Debug.Log("Quitting game...");
         SceneManager.LoadScene(0);
     }
+
+    public void HideGuide() { 
+    
+    tutorial.SetActive(false);
+
+    }
+
 }
