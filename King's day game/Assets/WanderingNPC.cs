@@ -14,7 +14,6 @@ public class WanderingNPC : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; //we stop all kinds or rotation to the agent
         PickNewDirection();
     }
 
