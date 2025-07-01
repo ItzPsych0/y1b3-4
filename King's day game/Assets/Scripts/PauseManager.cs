@@ -92,6 +92,8 @@ public class PauseManager : MonoBehaviour
     public void HideGuide() { 
     
     tutorial.SetActive(false);
+    Cursor.lockState = CursorLockMode.Locked;
+
 
     }
 
