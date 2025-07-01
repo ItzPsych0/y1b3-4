@@ -7177,18 +7177,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 841122403}
     m_Modifications:
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_Name
-      value: Teddy bear(fix1) (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_TagString
-      value: Wares
-      objectReference: {fileID: 0}
     - target: {fileID: 3744512543462691761, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.17
@@ -7245,6 +7233,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a6a8b6ab9f12d164b80f76f325c38a5a, type: 2}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_Name
+      value: Teddy bear(fix1) (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_TagString
+      value: Wares
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -28760,18 +28760,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 841122403}
     m_Modifications:
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_Name
-      value: Teddy bear(fix1) (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
-      propertyPath: m_TagString
-      value: Wares
-      objectReference: {fileID: 0}
     - target: {fileID: 3744512543462691761, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.2
@@ -28823,6 +28811,18 @@ PrefabInstance:
     - target: {fileID: 3744512543462691761, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_Name
+      value: Teddy bear(fix1) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631967302046665699, guid: 62c17cb2e49748b42a13c455213c5da9, type: 3}
+      propertyPath: m_TagString
+      value: Wares
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56613,6 +56613,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5096912673220944340, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3acea6ec4ce5c324d8f4a9d1a6313bb8, type: 2}
     - target: {fileID: 5658799006342682371, guid: 78be98491089b4e4db0ef392c7bc92dd, type: 3}
       propertyPath: poor
       value: 
