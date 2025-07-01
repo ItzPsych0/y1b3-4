@@ -3,10 +3,12 @@ using TMPro;
 
 public class TaskUpdate : MonoBehaviour
 {
-    public TextMeshProUGUI task1;
-    public TextMeshProUGUI task1Hint;
+    public TextMeshProUGUI task;
+    public TextMeshProUGUI taskHint;
     public GameObject done;
     Tasks tasks;
+    [TextArea] public string taskText;
+    [TextArea] public string taskHintText;
 
     private void Start()
     {
@@ -14,8 +16,13 @@ public class TaskUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
-        task1.text = $"<s>Buy some books</s>";
-        task1Hint.text = $"<s>Current objective: look around the market place for books</s>";
+        if (!Application.isPlaying || TaskManager.quest1Complete == true)
+        {
+            return;
+        }
+
+        task.text = taskText;
+        taskHint.text = taskHintText;
         TaskManager.quest1Complete = true;
         tasks.TaskUpdated();
         done.SetActive(true);

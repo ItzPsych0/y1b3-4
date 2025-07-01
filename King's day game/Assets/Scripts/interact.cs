@@ -8,21 +8,18 @@ using TMPro;
 public class interact : MonoBehaviour
 {
     public cameraMovement cameraMovement;
-    public InteractManager interactManager;
     public Camera mainCamera;
     public Transform talkWithNPC;
     public Transform seeWares;
     public Transform playerCam;
-    public GameObject howToInteract;
     public GameObject speech;
     public GameObject poor;
 
     float cameraXRotation = 0f;
     public float cameraYRotation = 0f;
 
-    [TextArea] public string dialogueText;
-    public bool talking = false;
-    public bool browsing = false;
+    bool talking = false;
+    bool browsing = false;
     bool playerInTrigger = false;
 
     private Light lightPoint;
@@ -35,12 +32,12 @@ public class interact : MonoBehaviour
 
             if (talking && !browsing)
             {
-                interactManager.Dialogue(this);
                 cameraMovement.target = talkWithNPC;
                 GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
                 GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = false;
-                howToInteract.SetActive(false);
+
                 Cursor.lockState = CursorLockMode.None;
+                speech.SetActive(true);
             }
             else if(!talking || browsing)
             {
@@ -60,24 +57,7 @@ public class interact : MonoBehaviour
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
-            GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
-            cameraMovement.target = playerCam;
-            Cursor.lockState = CursorLockMode.Locked;
-            speech.SetActive(false);
-            poor.SetActive(false);
-            browsing = false;
-            talking = false;
-            if (lightPoint != null)
-            {
-                lightPoint.enabled = false;
-            }
-            cameraMovement.interacting = false;
-        }
-
-        if (talking)
+        if(talking)
         {
             cameraXRotation = 0;
             cameraMovement.transform.position = talkWithNPC.transform.position;
@@ -97,7 +77,6 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = true;
-            howToInteract.SetActive(true);
         }
     }
 
@@ -106,7 +85,6 @@ public class interact : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInTrigger = false;
-            howToInteract.SetActive(false);
         }
     }
 

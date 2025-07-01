@@ -14,15 +14,16 @@ public class WanderingNPC : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; //we stop all kinds or rotation to the agent
         PickNewDirection();
     }
 
     void FixedUpdate()
     {
-        // Move in the current direction
+        // movement in the current direction
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
-        // Timer countdown
+        // timer countdown
         directionChangeTimer -= Time.fixedDeltaTime;
         if (directionChangeTimer <= 0f)
         {
@@ -32,7 +33,7 @@ public class WanderingNPC : MonoBehaviour
 
     void PickNewDirection()
     {
-        // Random direction on the XZ plane
+        //randomized direction on the XZ axis
         float angle = Random.Range(-maxTurnAngle, maxTurnAngle);
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         moveDirection = rotation * transform.forward;

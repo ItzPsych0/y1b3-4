@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour
@@ -17,11 +16,17 @@ public class TaskManager : MonoBehaviour
     public TextMeshProUGUI koekhapHint;
     public TextMeshProUGUI giveCubeHint;
 
+    public TextMeshProUGUI funFactText;
+
+    [TextArea] public List<string> funFacts;
+    int lastIndex = -1;
+
     public static bool quest1Complete = false;
     public static bool quest2Complete = false;
-    /*public static bool quest3Complete = false;*/
+    public static bool quest3Complete = false;
     public static bool quest4Complete = false;
-
+    public static bool quest5Complete = false;
+    public static bool quest4Found = false;
     public GameObject endOfGame;
 
     bool cubeAcquired;
@@ -32,8 +37,10 @@ public class TaskManager : MonoBehaviour
         endOfGame.SetActive(false);
         quest1Complete = false;
         quest2Complete = false;
-        /*quest3Complete = false;*/
+        quest3Complete = false;
         quest4Complete = false;
+        quest4Found = false;
+        quest5Complete = false;
 }
 void Update()
     {
@@ -51,6 +58,7 @@ void Update()
             {
                 journal.SetActive(true);
                 Time.timeScale = 0f;
+                GiveRandomFact();
 
                 GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");
                 previouslyActiveSpeechObjects.Clear();
@@ -80,12 +88,19 @@ void Update()
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if(quest1Complete && quest2Complete && quest3Complete && !quest4Found && quest5Complete)
         {
-            SceneManager.LoadScene(0);
+            endOfGame.SetActive(true);
+            Time.timeScale = 0f;
+            GameObject[] talking = GameObject.FindGameObjectsWithTag("Speech");                   
+            foreach (GameObject obj in talking)
+            {
+                obj.SetActive(false);
+            }
+            Cursor.lockState = CursorLockMode.None;
+            cameraMovement.interacting = true;
         }
-
-        if(quest1Complete &&  quest2Complete /*&& quest3Complete*/ && quest4Complete)
+        else if(quest1Complete && quest2Complete && quest3Complete && quest4Found && quest4Complete && quest5Complete)
         {
             endOfGame.SetActive(true);
             Time.timeScale = 0f;
@@ -103,4 +118,21 @@ void Update()
     {
         SceneManager.LoadScene(0);
     }
+
+    public void GiveRandomFact()
+    {
+        if (funFacts.Count == 0) return;
+
+        int newIndex;
+        do
+        {
+            newIndex = Random.Range(0, funFacts.Count);
+        }
+        while (newIndex == lastIndex && funFacts.Count > 1);
+
+        funFactText.text = funFacts[newIndex];
+
+        lastIndex = newIndex;
+    }
+
 }

@@ -13,8 +13,13 @@ public class QuestUpdate : MonoBehaviour
     }
     private void OnDestroy()
     {
-        task4Hint.text = $"Current objective: Give the cube to the guy";
-        tasks.TaskUpdated();
-        questGiver.QuestUpdate();
+        if (!Application.isPlaying || TaskManager.quest4Complete == true) return;
+
+        if (TaskManager.quest4Found)
+        {
+            task4Hint.text = $"Current objective: Give the present to the guy";
+            questGiver.QuestUpdate();
+            questGiver.cost = GetComponent<Value>().value;
+        }
     }
 }

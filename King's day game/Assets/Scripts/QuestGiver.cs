@@ -21,15 +21,17 @@ public class QuestGiver : MonoBehaviour
 
     bool talking = false;
     bool playerInTrigger = false;
-    bool questTriggered = false;
     public TextMeshProUGUI task4;
     public TextMeshProUGUI task4Hint;
     Tasks tasks;
     public GameObject done;
-
+    public float cost;
+    QuestUpdate questUpdate;
+    bool isTriggered;
     private void Start()
     {
         tasks = FindFirstObjectByType<Tasks>();
+        isTriggered = false;
     }
 
     private void Update()
@@ -46,6 +48,7 @@ public class QuestGiver : MonoBehaviour
                 howToInteract.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 speech.SetActive(true);
+                PauseManager.isInteracting = true;
             }
             else if (!talking)
             {
@@ -56,10 +59,11 @@ public class QuestGiver : MonoBehaviour
                 speech.SetActive(false);
                 talking = false;
                 cameraMovement.interacting = false;
+                PauseManager.isInteracting = false;
             }
         }
 
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape))
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.Escape) && talking)
         {
             GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
             GameObject.FindWithTag("Player").GetComponent<MeshRenderer>().enabled = true;
@@ -68,6 +72,7 @@ public class QuestGiver : MonoBehaviour
             speech.SetActive(false);
             talking = false;
             cameraMovement.interacting = false;
+            PauseManager.isInteracting = false;
         }
 
         if (talking)
@@ -102,27 +107,27 @@ public class QuestGiver : MonoBehaviour
         quest.SetActive(true);
         tasks.TaskUpdated();
         questButton.SetActive(false);
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, can you do me a favour? I really wanted that white cube over there, but I forgot my wallet. Could you please buy it for me?";
-        questTriggered = true;
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "I'd hate to ask.. but can you do me a favour? My nieces birthday is coming up but and I have no clue what kids are into nowadays. Could you pick something out from the market for me? I'll make sure to pay you back";
+        TaskManager.quest4Found = true;
     }
 
     public void QuestUpdate()
     {
         giveCube.SetActive(true);
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey there, did you manage to find the cube?";
-        if(!questTriggered)
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, did you manage to find something?";
+        if (!isTriggered)
         {
-            quest.SetActive(true);
-            questButton.SetActive(false);
-            speech.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, that cube... may I please have it? I really wanted it but forgot my wallet at home.";
+            tasks.TaskUpdated();
+            isTriggered = true;
         }
     }
 
     public void CubeGiven()
     {
-        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Thank you very much!";
-        task4.text = $"<s>Get the guy a white cube</s>";
-        task4Hint.text = $"<s>Current objective: Give the cube to the guy</s>";
+        speech.GetComponentInChildren<TextMeshProUGUI>().text = "Thank you so much! Here's your money back, as promised";
+        moneyManager.cashAmount += cost;
+        task4.text = $"<s>Find the guy a birthday present</s>";
+        task4Hint.text = $"<s>Current objective: Give the present to the guy</s>";
         TaskManager.quest4Complete = true;
         tasks.TaskUpdated();
         done.SetActive(true);

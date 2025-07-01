@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class PauseManager : MonoBehaviour
     public Button confirmQuitNoButton;
 
     public bool isPaused = false;
+    public static bool isInteracting;
 
     public cameraMovement cameraMovement;
 
@@ -19,6 +21,7 @@ public class PauseManager : MonoBehaviour
     {
         pauseUI.SetActive(false);
         confirmationUI.SetActive(false);
+        isInteracting = false;
 
         resumeButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(ShowQuitConfirmation);
@@ -30,6 +33,10 @@ public class PauseManager : MonoBehaviour
     
     void Update()
     {
+        if (isInteracting)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && confirmationUI.activeSelf == false)
         {
             if (isPaused)
@@ -45,7 +52,6 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
    
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = false;
@@ -59,7 +65,6 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         GameObject.FindWithTag("Player").GetComponent<movement>().enabled = true;
     }
@@ -79,10 +84,6 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Debug.Log("Quitting game...");
-        Application.Quit();
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // For editor testing
-#endif
+        SceneManager.LoadScene(0);
     }
 }
