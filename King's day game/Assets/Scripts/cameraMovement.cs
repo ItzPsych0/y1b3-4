@@ -12,7 +12,7 @@ public class cameraMovement : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         offset = transform.position - target.position;
         interacting = false;
         Time.timeScale = 1f;
