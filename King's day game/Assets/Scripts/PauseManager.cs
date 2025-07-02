@@ -11,6 +11,8 @@ public class PauseManager : MonoBehaviour
     public Button quitButton;
     public Button confirmQuitYesButton;
     public Button confirmQuitNoButton;
+    public GameObject tutorial;
+
 
     public bool isPaused = false;
     public static bool isInteracting;
@@ -27,7 +29,7 @@ public class PauseManager : MonoBehaviour
         quitButton.onClick.AddListener(ShowQuitConfirmation);
         confirmQuitYesButton.onClick.AddListener(QuitGame);
         confirmQuitNoButton.onClick.AddListener(CancelQuit);
-
+        Time.timeScale = 0f;
     }
 
     
@@ -86,4 +88,13 @@ public class PauseManager : MonoBehaviour
         Debug.Log("Quitting game...");
         SceneManager.LoadScene(0);
     }
+
+    public void HideGuide() 
+    {
+        tutorial.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+
+    }
+
 }
