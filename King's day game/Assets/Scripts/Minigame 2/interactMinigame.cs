@@ -24,6 +24,12 @@ public class interactMinigame : MonoBehaviour
 
     bool talking = false;
     bool playerInTrigger = false;
+    bool beatenOnce = false;
+
+    private void Start()
+    {
+        beatenOnce = false;
+    }
 
     private void Update()
     {
@@ -135,7 +141,11 @@ public class interactMinigame : MonoBehaviour
         cameraMovement.interacting = false;
         taskManager.inMinigame = false;
         PauseManager.isInteracting = false;
-        UpdateQuest();
+        if(!beatenOnce)
+        {
+            UpdateQuest();
+            beatenOnce = true;
+        }
     }
 
     void UpdateQuest()

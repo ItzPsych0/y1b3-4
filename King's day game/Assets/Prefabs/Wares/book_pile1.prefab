@@ -210,9 +210,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8767c9c2e69b57b47bdfc67cae64de3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8530659890759014758}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8767c9c2e69b57b47bdfc67cae64de3a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3113109634845238476}
   m_SourcePrefab: {fileID: 100100000, guid: 8767c9c2e69b57b47bdfc67cae64de3a, type: 3}
 --- !u!1 &532540309807366399 stripped
 GameObject:
@@ -253,23 +250,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.025823167, y: 0.022942998, z: 0.06032376}
   m_Center: {x: -0.0000038892026, y: 0.00002399624, z: -0.02016188}
---- !u!114 &3113109634845238476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532540309807366399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262fdb4f1dcb44943b00c20acc92b9e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  task: {fileID: 0}
-  taskHint: {fileID: 0}
-  done: {fileID: 0}
-  taskText: <s>Buy some books</s>
-  taskHintText: '<s>Current objective: look around the market place for books</s>"'
 --- !u!4 &875992164517370437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8767c9c2e69b57b47bdfc67cae64de3a, type: 3}
