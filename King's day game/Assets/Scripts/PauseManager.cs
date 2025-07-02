@@ -29,7 +29,7 @@ public class PauseManager : MonoBehaviour
         quitButton.onClick.AddListener(ShowQuitConfirmation);
         confirmQuitYesButton.onClick.AddListener(QuitGame);
         confirmQuitNoButton.onClick.AddListener(CancelQuit);
-
+        Time.timeScale = 0f;
     }
 
     
@@ -89,11 +89,11 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void HideGuide() { 
-    
-    tutorial.SetActive(false);
-    Cursor.lockState = CursorLockMode.Locked;
-
+    public void HideGuide() 
+    {
+        tutorial.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
 
     }
 
