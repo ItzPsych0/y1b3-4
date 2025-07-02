@@ -14,7 +14,6 @@ public class WanderingNPC : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; //we stop all kinds or rotation to the agent
         PickNewDirection();
     }
 
@@ -22,6 +21,13 @@ public class WanderingNPC : MonoBehaviour
     {
         // movement in the current direction
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+        // Face the movement direction
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 5f)); // Smooth rotation
+        }
 
         // timer countdown
         directionChangeTimer -= Time.fixedDeltaTime;
